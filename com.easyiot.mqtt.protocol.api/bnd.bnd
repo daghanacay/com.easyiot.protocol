@@ -1,0 +1,30 @@
+#
+# 
+#
+
+Bundle-Version: 1.0.1.${tstamp}
+Bundle-Description: 				\
+	API for MQTT protocol. Can be used to create a multiple connection points to MQTT server within a single application stack.
+
+	
+Export-Package: \
+	com.easyiot.mqtt.protocol.api;provide:=true,\
+	com.easyiot.mqtt.protocol.exception
+
+
+Require-Capability: \
+	compile-only
+
+-buildpath: \
+	osgi.enroute.base.api;version=1.0,\
+	com.easyiot.base.api;version=2.0
+
+-testpath: \
+	osgi.enroute.junit.wrapper;version=4.12
+
+Bundle-License: \
+	https://opensource.org/licenses/Apache-2.0; \
+	link=http://www.apache.org/licenses/LICENSE-2.0; \
+	description="Apache Software License 2.0"
+
+-runbundles: org.apache.felix.log;version='[1.0.1,1.0.2)'
