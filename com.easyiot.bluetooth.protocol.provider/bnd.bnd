@@ -1,0 +1,66 @@
+#
+#  BUNDLE 
+#
+
+
+Bundle-Version:					1.0.0.${tstamp}
+Bundle-Description: 				\
+	Implements the bluetooth protocol. It uses bluecove as the underlying library. \
+	It works on Linu_x64, arm and windows systems. Tested on Linux_64
+
+Private-Package: \
+	com.easyiot.bluetooth.protocol.provider,\
+	com.intel.bluetooth.obex,\
+	com.intel.bluetooth;-split-package:=merge-first,\
+	com.intel.bluetooth.gcf.socket,\
+	com.easyiot.bluetooth.protocol.provider.configuration,\
+	com.easyiot.bluetooth.protocol.provider.command
+	
+-buildpath: \
+	osgi.enroute.base.api;version=1.0,\
+	com.easyiot.bluetooth.protocol.api;version=latest,\
+	com.easyiot.base.api,\
+	lib/bluecove-2.1.0.jar;version=file,\
+	lib/bluecove-gpl-2.1.0.jar;version=file
+	
+-testpath: \
+	osgi.enroute.junit.wrapper;version=4.12
+
+Bundle-NativeCode: libbluecove_armv5tel.so;osname=Linux,\
+	libbluecove_x64.so;osname=Linux,\
+	libbluecove.so;osname=Linux,\
+	libbluecove_arm.so;osname=Linux
+
+-includeresource: {readme.md},\
+	lib/libbluecove_armv5tel.so,\
+	lib/libbluecove_x64.so,\
+	lib/libbluecove.so,\
+	lib/libbluecove_arm.so
+
+
+-runrequires:  \
+	osgi.identity;filter:='(osgi.identity=com.easyiot.bluetooth.protocol.provider)'
+	
+-runbundles: \
+	com.easyiot.base.provider;version='[1.0.0,1.0.1)',\
+	com.easyiot.bluetooth.protocol.provider;version=snapshot,\
+	org.apache.felix.configadmin;version='[1.8.6,1.8.7)',\
+	org.apache.felix.log;version='[1.0.1,1.0.2)',\
+	org.apache.felix.scr;version='[2.0.0,2.0.1)',\
+	org.eclipse.equinox.metatype;version='[1.4.100,1.4.101)',\
+	org.osgi.service.metatype;version='[1.3.0,1.3.1)'
+	
+Export-Package: \
+	org.apache.log4j,\
+	com.easyiot.bluetooth.protocol.api.exception,\
+	com.ibm.oti.vm,\
+	com.easyiot.bluetooth.protocol.api,\
+	javax.obex,\
+	javax.microedition.io,\
+	javax.bluetooth
+	
+Bundle-License: \
+	https://opensource.org/licenses/Apache-2.0; \
+	link=http://www.apache.org/licenses/LICENSE-2.0; \
+	description="Apache Software License 2.0"
+	

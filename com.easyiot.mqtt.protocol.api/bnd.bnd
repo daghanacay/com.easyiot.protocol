@@ -3,7 +3,7 @@
 #
 
 Bundle-Version: 1.0.0.${tstamp}
-Bundle-Description: 				\
+Bundle-Description:\
 	API for MQTT protocol. Can be used to create a multiple connection points to MQTT server within a single application stack.
 
 	

@@ -1,0 +1,30 @@
+#
+# 
+#
+
+Bundle-Version:1.0.0.${tstamp}
+Bundle-Description:\
+	Protocol provides searching blutooth devices, their services. It also allows sending messages to the \
+	bluetooth device using supported protocols.
+
+	
+Export-Package: \
+	com.easyiot.bluetooth.protocol.api;provide:=true,\
+	com.easyiot.bluetooth.protocol.api.exception
+
+
+Require-Capability: \
+	compile-only
+
+-buildpath: \
+	osgi.enroute.base.api;version=1.0,\
+	com.easyiot.base.api
+
+-testpath: \
+	osgi.enroute.junit.wrapper;version=4.12
+	
+Bundle-License: \
+	https://opensource.org/licenses/Apache-2.0; \
+	link=http://www.apache.org/licenses/LICENSE-2.0; \
+	description="Apache Software License 2.0"
+	
