@@ -10,6 +10,8 @@ import com.easyiot.base.api.exception.FrameworkException;
  */
 public class BluetoothException extends FrameworkException {
 
+	private static final long serialVersionUID = 1L;
+
 	public BluetoothException(Throwable e1) {
 		super(e1.getMessage());
 	}

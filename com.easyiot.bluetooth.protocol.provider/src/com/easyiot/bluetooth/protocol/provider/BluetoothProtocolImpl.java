@@ -225,6 +225,7 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 					}
 				}
 
+				@SuppressWarnings("unchecked")
 				@Override
 				public <T> T getDelegateDevice() {
 					return (T) btDevice;
