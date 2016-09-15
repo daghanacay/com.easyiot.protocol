@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1473332888000" name="Release" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1473933432000" name="Release" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.bluetooth.protocol.api"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="1.0.0.201609071043"/>
+      <attribute name="version" type="Version" value="1.0.0.201609141149"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="a8548f126ec082fcda9502cffde5fff9c2ba1ed597558e8feafbfec175fa48c8"/>
+      <attribute name="osgi.content" value="ca24df595d5b60ddf7de65929f575021c1e8a6b7feb6e40e5bd295a7bb10d8a5"/>
       <attribute name="url" value="com.easyiot.bluetooth.protocol.api/com.easyiot.bluetooth.protocol.api-1.0.0.jar"/>
-      <attribute name="size" type="Long" value="10419"/>
+      <attribute name="size" type="Long" value="10586"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="com.easyiot.bluetooth.protocol.api"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609071043"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141149"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="com.easyiot.bluetooth.protocol.api"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609071043"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141149"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.bluetooth.protocol.api"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.bluetooth.protocol.api"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609071043"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141149"/>
       <directive name="uses" value="com.easyiot.base.api"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.bluetooth.protocol.api.exception"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.bluetooth.protocol.api"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609071043"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141149"/>
       <directive name="uses" value="com.easyiot.base.api.exception"/>
     </capability>
     <requirement namespace="osgi.wiring.package">
@@ -49,67 +49,67 @@
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.bluetooth.protocol.provider"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="1.0.0.201609081047"/>
+      <attribute name="version" type="Version" value="1.0.0.201609141149"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="285fa20c50898926c293d03af58eb6137924d4a763cf3f4aface72981a5f3e8c"/>
+      <attribute name="osgi.content" value="afceeec06b4469f6422a4f23a260908776aa0ebc9d1200f1c8da34da1d0aff02"/>
       <attribute name="url" value="com.easyiot.bluetooth.protocol.provider/com.easyiot.bluetooth.protocol.provider-1.0.0.jar"/>
-      <attribute name="size" type="Long" value="388739"/>
+      <attribute name="size" type="Long" value="389036"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="com.easyiot.bluetooth.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609081047"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141149"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="com.easyiot.bluetooth.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609081047"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141149"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.bluetooth.protocol.api.exception"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.bluetooth.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609081047"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141149"/>
       <directive name="uses" value="com.easyiot.base.api.exception"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.bluetooth.protocol.api"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.bluetooth.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609081047"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141149"/>
       <directive name="uses" value="com.easyiot.base.api"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="javax.obex"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.bluetooth.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609081047"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141149"/>
       <directive name="uses" value="javax.microedition.io"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="javax.microedition.io"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.bluetooth.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609081047"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141149"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="javax.bluetooth"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.bluetooth.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609081047"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141149"/>
       <directive name="uses" value="javax.microedition.io"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="org.apache.log4j"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.bluetooth.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609081047"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141149"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.ibm.oti.vm"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.bluetooth.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609081047"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141149"/>
     </capability>
     <capability namespace="osgi.service">
       <attribute name="objectClass" type="List&lt;String&gt;" value="com.easyiot.bluetooth.protocol.api.BluetoothProtocol"/>
@@ -175,6 +175,110 @@
     </requirement>
     <requirement namespace="osgi.service">
       <directive name="filter" value="(objectClass=com.easyiot.bluetooth.protocol.api.BluetoothProtocol)"/>
+      <directive name="effective" value="active"/>
+    </requirement>
+    <requirement namespace="osgi.extender">
+      <directive name="filter" value="(&amp;(osgi.extender=osgi.component)(version&gt;=1.3.0)(!(version&gt;=2.0.0)))"/>
+      <directive name="effective" value="active"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="com.easyiot.gpio.protocol.api"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.0.0.201609141152"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="6763975541b6069bff4471f737288579a3979ccd19b9030d8b1f879d74928437"/>
+      <attribute name="url" value="com.easyiot.gpio.protocol.api/com.easyiot.gpio.protocol.api-1.0.0.jar"/>
+      <attribute name="size" type="Long" value="12537"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="com.easyiot.gpio.protocol.api"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141152"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="com.easyiot.gpio.protocol.api"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141152"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.easyiot.gpio.protocol.api"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="com.easyiot.gpio.protocol.api"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141152"/>
+      <directive name="uses" value="com.easyiot.base.api,com.easyiot.gpio.protocol.api.exception"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.easyiot.gpio.protocol.api.exception"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="com.easyiot.gpio.protocol.api"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141152"/>
+      <directive name="uses" value="com.easyiot.base.api.exception"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.easyiot.base.api)(version&gt;=1.0.0)(!(version&gt;=1.1.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.easyiot.base.api.exception)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.easyiot.gpio.protocol.api.exception)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="compile-only"/>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.8))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="com.easyiot.gpio.protocol.provider"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.0.0.201609141200"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="c6a2ed4ecf5f74e39e9735d9a9366d1412b06042bab21ef6fce51024b896d23a"/>
+      <attribute name="url" value="com.easyiot.gpio.protocol.provider/com.easyiot.gpio.protocol.provider-1.0.0.jar"/>
+      <attribute name="size" type="Long" value="10397"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="com.easyiot.gpio.protocol.provider"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141200"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="com.easyiot.gpio.protocol.provider"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201609141200"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <attribute name="objectClass" type="List&lt;String&gt;" value="com.easyiot.gpio.protocol.api.GpioProtocol"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <attribute name="objectClass" type="List&lt;String&gt;" value="com.easyiot.gpio.protocol.api.GpioProtocol"/>
+      <attribute name="id" value="rasberry.pi"/>
+      <directive name="uses" value="com.easyiot.gpio.protocol.api"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.easyiot.gpio.protocol.api)(version&gt;=1.0.0)(!(version&gt;=1.1.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.easyiot.gpio.protocol.api.exception)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.pi4j.io.gpio)(version&gt;=1.1.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.extender">
+      <directive name="filter" value="(&amp;(osgi.extender=osgi.component)(version&gt;=1.3.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.service">
+      <directive name="filter" value="(objectClass=com.pi4j.io.gpio.GpioController)"/>
+      <directive name="effective" value="active"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.8))"/>
+    </requirement>
+    <requirement namespace="osgi.service">
+      <directive name="filter" value="(objectClass=com.pi4j.io.gpio.GpioController)"/>
       <directive name="effective" value="active"/>
     </requirement>
     <requirement namespace="osgi.extender">
