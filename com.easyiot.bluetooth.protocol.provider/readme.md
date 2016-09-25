@@ -16,3 +16,6 @@ See BluetoothConfiguration
 	
 ## References
 
+Compatible with 
+http://pi4j.com/pins/model-b-plus.html
+http://pi4j.com/pins/model-2b-rev1.html

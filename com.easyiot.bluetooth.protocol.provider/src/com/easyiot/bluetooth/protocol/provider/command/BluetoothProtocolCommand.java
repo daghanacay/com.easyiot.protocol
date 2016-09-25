@@ -30,7 +30,7 @@ public class BluetoothProtocolCommand {
 		btProtocol.searchDevices().stream().peek(device -> {
 			System.out.println("Found device:");
 			System.out.println(device.getBluetoothAddress() + device.getFriendlyName());
-		}).map(device -> btProtocol.searchServices(device, AuthEncryptEnum.NOAUTHENTICATE_NOENCRYPT))
+		}).map(device -> btProtocol.searchServices(device, AuthEncryptEnum.AUTHENTICATE_NOENCRYPT))
 				.forEach(serviceList -> {
 					System.out.println("Found services");
 					serviceList.forEach(service -> System.out.println(service.getConnectionUrl()));

@@ -9,6 +9,8 @@ import com.easyiot.base.api.exception.FrameworkException;
  *
  */
 public class SppCommFailed extends FrameworkException {
+	private static final long serialVersionUID = 1L;
+
 	public SppCommFailed(Throwable t) {
 		super(t.getMessage());
 	}

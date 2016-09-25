@@ -120,8 +120,8 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 			throw new BluetoothException(e1);
 		} catch (InterruptedException e) {
 			throw new BluetoothException("Cannot get the lock. Please wait until service search is finished.");
-		} finally {
-			this.connectionLock.unlock();
+		}finally {
+			connectionLock.unlock();
 		}
 
 		return listener.getDevices();
@@ -149,7 +149,7 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 			try {
 				if (!l.await(CONNECTION_TIMEOUT, TimeUnit.SECONDS)) {
 					this.logService.log(LOG_ERROR,
-							String.format("Service discovery TIMEOUT in %ss. Terminating.", CONNECTION_TIMEOUT));
+							String.format("Service discovery TIMEOUT in %s. Terminating.", CONNECTION_TIMEOUT));
 					throw new BluetoothException("Service discovery Timeout");
 				}
 			} catch (final InterruptedException e) {
@@ -160,8 +160,8 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 			throw new BluetoothException("Cannot get the lock. Please wait until device search is finished.");
 		} catch (BluetoothStateException e) {
 			throw new BluetoothException(e);
-		}finally {
-			this.connectionLock.unlock();
+		} finally {
+			connectionLock.unlock();
 		}
 
 		logService.log(LOG_DEBUG,
@@ -225,6 +225,7 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 					}
 				}
 
+				@SuppressWarnings("unchecked")
 				@Override
 				public <T> T getDelegateDevice() {
 					return (T) btDevice;

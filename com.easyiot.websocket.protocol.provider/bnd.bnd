@@ -1,0 +1,53 @@
+Bundle-Version:					1.0.0.${tstamp}
+Bundle-Description: 				\
+	An implementation of websocket protocol based on JSR-356
+
+Private-Package: \
+	com.easyiot.websocket.protocol.provider,\
+	com.easyiot.websocket.protocol.provider.configuration,\
+	com.easyiot.websocket.protocol.command
+	
+-buildpath: \
+	osgi.enroute.base.api;version=1.0,\
+	com.easyiot.websocket.protocol.api;version=latest,\
+	com.easyiot.base.api,\
+	lib/java_websocket.jar;version=file
+	
+-testpath: \
+	osgi.enroute.junit.wrapper;version=4.12
+
+-includeresource: {readme.md}
+-runproperties: \
+	org.osgi.service.http.port = 8080
+	
+-runbundles: \
+	com.easyiot.base.provider;version='[1.0.0,1.0.1)',\
+	com.easyiot.websocket.protocol.provider;version=snapshot,\
+	org.apache.felix.configadmin;version='[1.8.6,1.8.7)',\
+	org.apache.felix.log;version='[1.0.1,1.0.2)',\
+	org.apache.felix.scr;version='[2.0.0,2.0.1)',\
+	org.eclipse.equinox.metatype;version='[1.4.100,1.4.101)',\
+	org.osgi.service.metatype;version='[1.3.0,1.3.1)'
+
+Bundle-License: \
+	https://opensource.org/licenses/Apache-2.0; \
+	link=http://www.apache.org/licenses/LICENSE-2.0; \
+	description="Apache Software License 2.0"
+	
+Export-Package: \
+	com.easyiot.websocket.protocol.api,\
+	com.easyiot.websocket.protocol.api.exception,\
+	org.java_websocket.client,\
+	org.java_websocket,\
+	org.java_websocket.framing,\
+	org.java_websocket.handshake,\
+	org.java_websocket.server,\
+	org.java_websocket.util,\
+	org.java_websocket.drafts,\
+	org.java_websocket.exceptions
+
+-runee: JavaSE-1.8
+-runfw: org.eclipse.osgi
+
+-runrequires: osgi.identity;filter:='(osgi.identity=com.easyiot.websocket.protocol.provider)'
+	
