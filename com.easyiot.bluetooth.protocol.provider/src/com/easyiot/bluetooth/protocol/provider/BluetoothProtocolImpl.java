@@ -120,6 +120,8 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 			throw new BluetoothException(e1);
 		} catch (InterruptedException e) {
 			throw new BluetoothException("Cannot get the lock. Please wait until service search is finished.");
+		} finally {
+			this.connectionLock.unlock();
 		}
 
 		return listener.getDevices();
@@ -158,6 +160,8 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 			throw new BluetoothException("Cannot get the lock. Please wait until device search is finished.");
 		} catch (BluetoothStateException e) {
 			throw new BluetoothException(e);
+		}finally {
+			this.connectionLock.unlock();
 		}
 
 		logService.log(LOG_DEBUG,
