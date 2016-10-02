@@ -1,0 +1,35 @@
+#
+#  BUNDLE 
+#
+
+
+Bundle-Version:					1.0.0.${tstamp}
+Bundle-Description: 				\
+	Implements auslora-websocket protocol.
+
+Private-Package: \
+	com.easyiot.auslora_websocket.protocol.provider,\
+	com.easyiot.websocket.protocol.provider.configuration
+	
+-buildpath: \
+	osgi.enroute.base.api;version=1.0,\
+	com.easyiot.base.api,\
+	com.easyiot.websocket.protocol.provider;version=latest,\
+	com.easyiot.auslora-websocket.protocol.api;version=latest
+	
+-testpath: \
+	osgi.enroute.junit.wrapper;version=4.12
+
+-includeresource: {readme.md}
+
+
+-runrequires:  \
+	osgi.identity;filter:='(osgi.identity=com.easyiot.auslora-websocket.protocol.provider)'
+	
+-runbundles: \
+	${error;Resolve first}
+Bundle-License: \
+	https://opensource.org/licenses/Apache-2.0; \
+	link=http://www.apache.org/licenses/LICENSE-2.0; \
+	description="Apache Software License 2.0"
+	

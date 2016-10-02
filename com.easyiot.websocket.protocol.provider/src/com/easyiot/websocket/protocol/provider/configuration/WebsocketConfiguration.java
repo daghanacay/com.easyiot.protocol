@@ -10,7 +10,7 @@ public @interface WebsocketConfiguration {
 	 * Id of the protocol instance
 	 */
 	@AttributeDefinition(name = "Instance ID", description = "Websocket protocol instance ID", required = true)
-	public String id() default "lora.websocket";
+	public String id() default "websocket";
 
 	/**
 	 * Websocket Server Address
