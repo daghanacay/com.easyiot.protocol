@@ -19,7 +19,9 @@ Require-Capability: \
 	compile-only
 
 -buildpath: \
-	osgi.enroute.base.api;version=1.0
+	osgi.enroute.base.api;version=1.0,\
+	com.easyiot.mqtt.protocol.api;version=latest,\
+	com.easyiot.base.api
 
 -testpath: \
 	osgi.enroute.junit.wrapper;version=4.12

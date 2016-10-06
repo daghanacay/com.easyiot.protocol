@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.easyiot.mqtt.protocol.provider.configuration;
+package com.easyiot.ttn_mqtt.protocol.provider.configuration;
 
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
@@ -25,36 +25,36 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
  */
 
 @ObjectClassDefinition(name = "MQTT Configuration")
-public @interface MqttConfiguration {
+public @interface TtnMqttConfiguration {
 	/**
 	 * Id of the protocol instance
 	 */
-	@AttributeDefinition(name = "Instance ID", description = "MQTT protocol instance ID", required = true)
-	public String id() default "mqtt";
+	@AttributeDefinition(name = "Instance ID", description = "TTN MQTT protocol instance ID", required = true)
+	public String id() default "ttn.staging.mqtt";
 
 	
 	/**
 	 * MQTT broker Server Address
 	 */
-	@AttributeDefinition(name = "MQTT Server", description = "MQTT Server Address", required = true)
-	public String host() default "mqtt.server";
+	@AttributeDefinition(name = "MQTT Server", description = "TTN MQTT Server Address", required = true)
+	public String host() default "staging.thethingsnetwork.org";
 
 	/**
 	 * MQTT Broker Port
 	 */
-	@AttributeDefinition(name = "MQTT Port", description = "MQTT Connection Port", required = true)
+	@AttributeDefinition(name = "MQTT Port", description = "TTN MQTT Connection Port", required = true)
 	public int port() default 1883;
 
 	/**
 	 * MQTT Broker Username
 	 */
-	@AttributeDefinition(name = "MQTT Username", description = "MQTT Username")
-	public String username() default "";
+	@AttributeDefinition(name = "MQTT Username", description = "TTN MQTT Username", required = true)
+	public String username() default "70B3D57ED0000185";
 
 	/**
 	 * MQTT Broker Password
 	 */
-	@AttributeDefinition(name = "MQTT Password", description = "MQTT Password")
-	public String userPassword() default "";
+	@AttributeDefinition(name = "MQTT Password", description = "TTN MQTT Password", required = true)
+	public String userPassword() default "vjGkwZGzSGSkhzMawoXv59f84oGjeYHX0mBbC1c7Yq0=";
 
 }
