@@ -8,7 +8,7 @@ ${Bundle-Description}
 
 see MqttConfiguration For required and default fields
 
-Factory-Pid: com.easyiot.mqtt.protocol.provider
+Factory-Pid: com.easyiot.mqtt.protocol
 
 Sample configuration
 

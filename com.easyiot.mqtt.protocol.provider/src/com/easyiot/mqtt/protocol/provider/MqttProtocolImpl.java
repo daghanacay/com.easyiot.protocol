@@ -42,12 +42,12 @@ import com.easyiot.mqtt.protocol.provider.configuration.MqttConfiguration;
  */
 
 @Designate(ocd = MqttConfiguration.class, factory = true)
-@Component(name = "com.easyiot.mqtt.protocol.provider", configurationPolicy = ConfigurationPolicy.REQUIRE)
+@Component(name = "com.easyiot.mqtt.protocol", configurationPolicy = ConfigurationPolicy.REQUIRE, immediate = true)
 public final class MqttProtocolImpl implements MqttProtocol {
 	/**
 	 * MQTT Configuration
 	 */
-	private MqttConfiguration mqttConfiguration; 
+	private MqttConfiguration mqttConfiguration;
 
 	/**
 	 * list of listeners

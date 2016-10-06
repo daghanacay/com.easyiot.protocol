@@ -1,36 +1,37 @@
 package com.easyiot.auslora_websocket.protocol.provider;
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.Designate;
 
 import com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketListener;
 import com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketProtocol;
 import com.easyiot.auslora_websocket.protocol.api.dto.AusloraMetadataDTO;
+import com.easyiot.websocket.protocol.api.WebsocketProtocol;
+import com.easyiot.websocket.protocol.api.WebsocketProtocolFactory;
 import com.easyiot.websocket.protocol.api.WsListener;
-import com.easyiot.websocket.protocol.provider.WebsocketProtocolImpl;
 import com.easyiot.websocket.protocol.provider.configuration.AusloraWebsocketConfiguration;
-import com.easyiot.websocket.protocol.provider.configuration.ProtocolEnum;
-import com.easyiot.websocket.protocol.provider.configuration.WebsocketConfiguration;
 
 import osgi.enroute.dto.api.DTOs;
 
-@SuppressWarnings("restriction")
 @Designate(ocd = AusloraWebsocketConfiguration.class, factory = true)
-@Component(name = "com.easyiot.auslora-websocket.protocol")
+@Component(name = "com.easyiot.auslora-websocket.protocol", configurationPolicy = ConfigurationPolicy.REQUIRE, immediate = true)
 public class AusloraWebsocketProtocolImpl implements AusloraWebsocketProtocol {
 	private Map<String, AusloraWebsocketListener> deviceMap = new ConcurrentHashMap<>();
 	private Map<AusloraWebsocketListener, WsListener> callbackMap = new ConcurrentHashMap<>();
-	private WebsocketProtocolImpl wsClient;
+	private WebsocketProtocol wsClient;
 	private AusloraWebsocketConfiguration configuration;
 	@Reference
 	private DTOs dtoConverter;
+
+	@Reference
+	private WebsocketProtocolFactory websocketProtocolFactory;
 
 	/**
 	 * Activation Callback
@@ -38,7 +39,7 @@ public class AusloraWebsocketProtocolImpl implements AusloraWebsocketProtocol {
 	@Activate
 	public void activate(AusloraWebsocketConfiguration configuration) throws IOException {
 		this.configuration = configuration;
-		createPrivateWebSocketProtocol(configuration);
+		wsClient = websocketProtocolFactory.getWSSInstance(configuration.host(), configuration.port());
 	}
 
 	@Override
@@ -76,38 +77,5 @@ public class AusloraWebsocketProtocolImpl implements AusloraWebsocketProtocol {
 	@Override
 	public void sendMessage(String applicationID, String deviceEUI, String message) {
 		wsClient.sendMessage(applicationID, message);
-	}
-
-	private void createPrivateWebSocketProtocol(AusloraWebsocketConfiguration configuration) throws IOException {
-		wsClient = new WebsocketProtocolImpl();
-		WebsocketConfiguration wsConfig = new WebsocketConfiguration() {
-
-			@Override
-			public Class<? extends Annotation> annotationType() {
-				return WebsocketConfiguration.class;
-			}
-
-			@Override
-			public ProtocolEnum protocol() {
-				return ProtocolEnum.wss;
-			}
-
-			@Override
-			public int port() {
-				return configuration.port();
-			}
-
-			@Override
-			public String id() {
-				return "AUSLORA" + configuration.id();
-			}
-
-			@Override
-			public String host() {
-				return configuration.host();
-			}
-		};
-
-		wsClient.activate(wsConfig);
 	}
 }
