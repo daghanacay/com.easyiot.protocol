@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1476098266000" name="Release" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1476099470000" name="Release" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.auslora-websocket.protocol.api"/>
@@ -576,34 +576,34 @@
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.ttn-mqtt.protocol.api"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="1.0.0.201610101038"/>
+      <attribute name="version" type="Version" value="1.0.0.201610101136"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="7e2625e842cf7c200cc5cf717994968ebeb01f183ffffafa8136e80cd57ce62f"/>
+      <attribute name="osgi.content" value="65fb188b3f0ee932172efb0be8b452df608f03da0644c7f6ae97a90266ecc1fa"/>
       <attribute name="url" value="com.easyiot.ttn-mqtt.protocol.api/com.easyiot.ttn-mqtt.protocol.api-1.0.0.jar"/>
-      <attribute name="size" type="Long" value="8771"/>
+      <attribute name="size" type="Long" value="8836"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="com.easyiot.ttn-mqtt.protocol.api"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610101038"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610101136"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="com.easyiot.ttn-mqtt.protocol.api"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610101038"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610101136"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.ttn_mqtt.protocol.api"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.ttn-mqtt.protocol.api"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610101038"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610101136"/>
       <directive name="uses" value="com.easyiot.base.api,com.easyiot.ttn_mqtt.protocol.api.dto"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.ttn_mqtt.protocol.api.dto"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.ttn-mqtt.protocol.api"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610101038"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610101136"/>
       <directive name="uses" value="org.osgi.dto"/>
     </capability>
     <requirement namespace="osgi.wiring.package">
@@ -624,21 +624,21 @@
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.ttn-mqtt.protocol.provider"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="1.0.0.201610101116"/>
+      <attribute name="version" type="Version" value="1.0.0.201610101137"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="782667e97353392b06786e8247e77e1917b5c69fac26a4cfd2b1b546a8f83400"/>
+      <attribute name="osgi.content" value="8f13af3d86d2dfc37e5286618596aa79b5877ac55317b2bf1c0d146a2455a19d"/>
       <attribute name="url" value="com.easyiot.ttn-mqtt.protocol.provider/com.easyiot.ttn-mqtt.protocol.provider-1.0.0.jar"/>
-      <attribute name="size" type="Long" value="10808"/>
+      <attribute name="size" type="Long" value="10790"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="com.easyiot.ttn-mqtt.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610101116"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610101137"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="com.easyiot.ttn-mqtt.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610101116"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610101137"/>
     </capability>
     <capability namespace="osgi.service">
       <attribute name="objectClass" type="List&lt;String&gt;" value="com.easyiot.ttn_mqtt.protocol.api.TtnMqttProtocol"/>

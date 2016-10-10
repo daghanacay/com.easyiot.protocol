@@ -15,8 +15,6 @@
  *******************************************************************************/
 package com.easyiot.ttn_mqtt.protocol.api;
 
-import java.util.Set;
-
 import org.osgi.annotation.versioning.ProviderType;
 
 import com.easyiot.base.api.Protocol;
