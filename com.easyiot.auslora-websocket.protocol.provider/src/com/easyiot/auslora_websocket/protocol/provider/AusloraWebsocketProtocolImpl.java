@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.xml.bind.DatatypeConverter;
+
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -56,6 +58,8 @@ public class AusloraWebsocketProtocolImpl implements AusloraWebsocketProtocol {
 				// Only use the GW data messages
 				if (str.contains("\"cmd\":\"gw\"")) {
 					AusloraMetadataDTO newMetaData = dtoConverter.decoder(AusloraMetadataDTO.class).get(str);
+					//Decode the sensor data
+					newMetaData.data = new String(DatatypeConverter.parseHexBinary(newMetaData.data));
 					// Decode payload
 					deviceMap.get(newMetaData.EUI).processMessage(newMetaData);
 				}

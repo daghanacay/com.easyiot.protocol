@@ -1,27 +1,13 @@
 package com.easyiot.ttn_mqtt.protocol.provider;
 
-import static java.util.Objects.nonNull;
 import static org.osgi.service.component.annotations.ReferenceCardinality.OPTIONAL;
-import static org.osgi.service.log.LogService.LOG_DEBUG;
-import static org.osgi.service.log.LogService.LOG_ERROR;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.Buffer;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
-import javax.security.auth.callback.Callback;
+import java.util.Base64;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
-import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.log.LogService;
 import org.osgi.service.metatype.annotations.Designate;
@@ -31,14 +17,17 @@ import com.easyiot.mqtt.protocol.api.MqttProtocol;
 import com.easyiot.mqtt.protocol.api.MqttProtocolFactory;
 import com.easyiot.ttn_mqtt.protocol.api.TtnMqttMessageListener;
 import com.easyiot.ttn_mqtt.protocol.api.TtnMqttProtocol;
+import com.easyiot.ttn_mqtt.protocol.api.dto.TtnMetaDataDTO;
 import com.easyiot.ttn_mqtt.protocol.provider.configuration.TtnMqttConfiguration;
+
+import osgi.enroute.dto.api.DTOs;
 
 /**
  * Implementation of {@link IMqttClient}
  */
 
 @Designate(ocd = TtnMqttConfiguration.class, factory = true)
-@Component(name = "com.easyiot.mqtt.protocol", configurationPolicy = ConfigurationPolicy.REQUIRE, immediate = true)
+@Component(name = "com.easyiot.ttn-mqtt.protocol", configurationPolicy = ConfigurationPolicy.REQUIRE, immediate = true)
 public final class TtnMqttProtocolImpl implements TtnMqttProtocol {
 	/**
 	 * MQTT Configuration
@@ -55,6 +44,9 @@ public final class TtnMqttProtocolImpl implements TtnMqttProtocol {
 
 	@Reference
 	MqttProtocolFactory mqttProtocolFactory;
+
+	@Reference
+	private DTOs dtoConverter;
 
 	/**
 	 * Activation Callback
@@ -86,7 +78,6 @@ public final class TtnMqttProtocolImpl implements TtnMqttProtocol {
 		myMqqttProtocol.disconnect();
 	}
 
-	
 	@Override
 	public void publish(String channel, String payload) {
 		myMqqttProtocol.publish(channel, payload);
@@ -97,10 +88,18 @@ public final class TtnMqttProtocolImpl implements TtnMqttProtocol {
 		MessageListener myMessageListener = new MessageListener() {
 			@Override
 			public void processMessage(String message) {
-				callback.processMessage(message);
+				TtnMetaDataDTO newMetaData;
+				try {
+					newMetaData = dtoConverter.decoder(TtnMetaDataDTO.class).get(message);
+					// Decode sensor data
+					newMetaData.payload = new String(Base64.getDecoder().decode(newMetaData.payload));
+					callback.processMessage(newMetaData);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		};
-		
+
 		myMqqttProtocol.subscribe(channel, myMessageListener);
 	}
 

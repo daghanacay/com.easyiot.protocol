@@ -10,5 +10,5 @@ public class TtnMetaDataDTO extends DTO{
 	public int port;
 	public int counter;
 	public String dev_eui;
-	public List<TtnGatewayDataDTO> metadata = Arrays.asList(new TtnGatewayDataDTO());
+	public List<TtnGatewayDataDTO> gwts = Arrays.asList(new TtnGatewayDataDTO());
 }
