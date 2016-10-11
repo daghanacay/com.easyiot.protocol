@@ -3,7 +3,6 @@ package com.easyiot.ttn_mqtt.protocol.provider;
 import static org.osgi.service.component.annotations.ReferenceCardinality.OPTIONAL;
 
 import java.io.IOException;
-import java.util.Base64;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -91,8 +90,6 @@ public final class TtnMqttProtocolImpl implements TtnMqttProtocol {
 				TtnMetaDataDTO newMetaData;
 				try {
 					newMetaData = dtoConverter.decoder(TtnMetaDataDTO.class).get(message);
-					// Decode sensor data
-					newMetaData.payload = new String(Base64.getDecoder().decode(newMetaData.payload));
 					callback.processMessage(newMetaData);
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -4,10 +4,13 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.util.Random;
 
+import org.osgi.service.component.annotations.Component;
+
 import com.easyiot.mqtt.protocol.api.MqttProtocol;
 import com.easyiot.mqtt.protocol.api.MqttProtocolFactory;
 import com.easyiot.mqtt.protocol.provider.configuration.MqttConfiguration;
 
+@Component
 public class MqttProtocolFactoryImpl implements MqttProtocolFactory{
 
 	@Override

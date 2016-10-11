@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1476099470000" name="Release" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1476181783000" name="Release" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.auslora-websocket.protocol.api"/>
@@ -52,48 +52,48 @@
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.auslora-websocket.protocol.provider"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="1.0.0.201610101114"/>
+      <attribute name="version" type="Version" value="1.0.0.201610111029"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="db3d243baf07f3d57251f36acaa5199d1d012e5463de6ba0ecce6c4a5ef9e9e7"/>
+      <attribute name="osgi.content" value="896fcf12fe7ffe84eeff7c0529d263354d8480beb9efb62cb90f2b2920889309"/>
       <attribute name="url" value="com.easyiot.auslora-websocket.protocol.provider/com.easyiot.auslora-websocket.protocol.provider-1.0.0.jar"/>
-      <attribute name="size" type="Long" value="22827"/>
+      <attribute name="size" type="Long" value="22665"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="com.easyiot.auslora-websocket.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610101114"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610111029"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="com.easyiot.auslora-websocket.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610101114"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610111029"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.auslora_websocket.protocol.api"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.auslora-websocket.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610101114"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610111029"/>
       <directive name="uses" value="com.easyiot.auslora_websocket.protocol.api.dto,com.easyiot.base.api"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.auslora_websocket.protocol.api.dto"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.auslora-websocket.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610101114"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610111029"/>
       <directive name="uses" value="org.osgi.dto"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.websocket.protocol.api"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.auslora-websocket.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610101114"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610111029"/>
       <directive name="uses" value="com.easyiot.base.api"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.websocket.protocol.provider"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.auslora-websocket.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610101114"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610111029"/>
     </capability>
     <capability namespace="osgi.service">
       <attribute name="objectClass" type="List&lt;String&gt;" value="com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketProtocol"/>
@@ -116,9 +116,6 @@
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=com.easyiot.websocket.protocol.api)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
-    </requirement>
-    <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(osgi.wiring.package=javax.xml.bind)"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.dto)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
@@ -488,38 +485,45 @@
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.mqtt.protocol.provider"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="1.0.0.201610060842"/>
+      <attribute name="version" type="Version" value="1.0.0.201610110945"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="cd318cbba9d289eb9ef4b0121f6fddbee676db2a5483a7b897e2e7a2df3aabea"/>
+      <attribute name="osgi.content" value="49fc45403eaafb29a5a5779e5e889073098d6e099d7b0baba11131bd858f888d"/>
       <attribute name="url" value="com.easyiot.mqtt.protocol.provider/com.easyiot.mqtt.protocol.provider-1.0.0.jar"/>
-      <attribute name="size" type="Long" value="29048"/>
+      <attribute name="size" type="Long" value="29557"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="com.easyiot.mqtt.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610060842"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610110945"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="com.easyiot.mqtt.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610060842"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610110945"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.mqtt.protocol.exception"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.mqtt.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610060842"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610110945"/>
       <directive name="uses" value="com.easyiot.base.api.exception"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.mqtt.protocol.api"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.mqtt.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610060842"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610110945"/>
       <directive name="uses" value="com.easyiot.base.api"/>
     </capability>
     <capability namespace="osgi.service">
       <attribute name="objectClass" type="List&lt;String&gt;" value="com.easyiot.mqtt.protocol.api.MqttProtocol"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <attribute name="objectClass" type="List&lt;String&gt;" value="com.easyiot.mqtt.protocol.api.MqttProtocolFactory"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <attribute name="objectClass" type="List&lt;String&gt;" value="com.easyiot.mqtt.protocol.api.MqttProtocolFactory"/>
+      <directive name="uses" value="com.easyiot.mqtt.protocol.api"/>
     </capability>
     <capability namespace="osgi.service">
       <attribute name="objectClass" type="List&lt;String&gt;" value="com.easyiot.mqtt.protocol.api.MqttProtocol"/>
@@ -624,21 +628,35 @@
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.ttn-mqtt.protocol.provider"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="1.0.0.201610101137"/>
+      <attribute name="version" type="Version" value="1.0.0.201610111028"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="8f13af3d86d2dfc37e5286618596aa79b5877ac55317b2bf1c0d146a2455a19d"/>
+      <attribute name="osgi.content" value="d76244a314d71348d6abfa94df43ac1056f7338ecaec3d50b5af9df9ff621cfe"/>
       <attribute name="url" value="com.easyiot.ttn-mqtt.protocol.provider/com.easyiot.ttn-mqtt.protocol.provider-1.0.0.jar"/>
-      <attribute name="size" type="Long" value="10790"/>
+      <attribute name="size" type="Long" value="17485"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="com.easyiot.ttn-mqtt.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610101137"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610111028"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="com.easyiot.ttn-mqtt.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610101137"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610111028"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.easyiot.ttn_mqtt.protocol.api"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="com.easyiot.ttn-mqtt.protocol.provider"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610111028"/>
+      <directive name="uses" value="com.easyiot.base.api,com.easyiot.ttn_mqtt.protocol.api.dto"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.easyiot.ttn_mqtt.protocol.api.dto"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="com.easyiot.ttn-mqtt.protocol.provider"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610111028"/>
+      <directive name="uses" value="org.osgi.dto"/>
     </capability>
     <capability namespace="osgi.service">
       <attribute name="objectClass" type="List&lt;String&gt;" value="com.easyiot.ttn_mqtt.protocol.api.TtnMqttProtocol"/>
@@ -653,6 +671,9 @@
       <directive name="uses" value="com.easyiot.ttn_mqtt.protocol.api"/>
     </capability>
     <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.easyiot.base.api)(version&gt;=1.0.0)(!(version&gt;=1.1.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=com.easyiot.mqtt.protocol.api)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
@@ -660,6 +681,9 @@
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=com.easyiot.ttn_mqtt.protocol.api.dto)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.dto)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.service.log)(version&gt;=1.3.0)(!(version&gt;=2.0.0)))"/>
