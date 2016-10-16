@@ -42,7 +42,7 @@ import com.easyiot.mqtt.protocol.provider.configuration.MqttConfiguration;
  */
 
 @Designate(ocd = MqttConfiguration.class, factory = true)
-@Component(name = "com.easyiot.mqtt.protocol", configurationPolicy = ConfigurationPolicy.REQUIRE, immediate = true)
+@Component(name = "com.easyiot.mqtt.protocol", configurationPolicy = ConfigurationPolicy.REQUIRE)
 public final class MqttProtocolImpl implements MqttProtocol {
 	/**
 	 * MQTT Configuration
@@ -99,7 +99,13 @@ public final class MqttProtocolImpl implements MqttProtocol {
 				this.safelyDisconnect();
 			}
 		} catch (final Exception e) {
-			this.logService.log(LOG_DEBUG, "Exception while disconnecting");
+			logIfPossible(LOG_DEBUG, "Exception while disconnecting");
+		}
+	}
+
+	private void logIfPossible(int logLevel, String logMessage) {
+		if (logService != null) {
+			this.logService.log(logLevel, logMessage);
 		}
 	}
 
@@ -128,7 +134,7 @@ public final class MqttProtocolImpl implements MqttProtocol {
 			}
 
 		} catch (final URISyntaxException e) {
-			this.logService.log(LOG_ERROR, e.getMessage());
+			logIfPossible(LOG_ERROR, e.getMessage());
 		}
 		try {
 			if (this.connectionLock.tryLock(5, TimeUnit.SECONDS)) {
@@ -192,14 +198,13 @@ public final class MqttProtocolImpl implements MqttProtocol {
 				/** {@inheritDoc} */
 				@Override
 				public void onFailure(final Throwable throwable) {
-					MqttProtocolImpl.this.logService.log(LOG_DEBUG,
-							"Impossible to publish message to channel " + channel);
+					logIfPossible(LOG_DEBUG, "Impossible to publish message to channel " + channel);
 				}
 
 				/** {@inheritDoc} */
 				@Override
 				public void onSuccess(final Void aVoid) {
-					MqttProtocolImpl.this.logService.log(LOG_DEBUG, "Successfully published");
+					logIfPossible(LOG_DEBUG, "Successfully published");
 				}
 			});
 		}
@@ -220,19 +225,19 @@ public final class MqttProtocolImpl implements MqttProtocol {
 			/** {@inheritDoc} */
 			@Override
 			public void onConnected() {
-				MqttProtocolImpl.this.logService.log(LOG_DEBUG, "Host connected");
+				logIfPossible(LOG_DEBUG, "Host connected");
 			}
 
 			/** {@inheritDoc} */
 			@Override
 			public void onDisconnected() {
-				MqttProtocolImpl.this.logService.log(LOG_DEBUG, "Host disconnected");
+				logIfPossible(LOG_DEBUG, "Host disconnected");
 			}
 
 			/** {@inheritDoc} */
 			@Override
 			public void onFailure(final Throwable throwable) {
-				MqttProtocolImpl.this.logService.log(LOG_DEBUG, "Exception Occurred: " + throwable.getMessage());
+				logIfPossible(LOG_DEBUG, "Exception Occurred: " + throwable.getMessage());
 			}
 
 			/** {@inheritDoc} */
@@ -244,7 +249,7 @@ public final class MqttProtocolImpl implements MqttProtocol {
 						MqttProtocolImpl.this.channels.get(mqttChannel.toString())
 								.processMessage(new String(mqttMessage.toByteArray(), "UTF-8"));
 					} catch (final IOException e) {
-						MqttProtocolImpl.this.logService.log(LOG_DEBUG, "I/O Exception Occurred: " + e.getMessage());
+						logIfPossible(LOG_DEBUG, "I/O Exception Occurred: " + e.getMessage());
 					}
 				}
 				ack.run();
@@ -258,26 +263,26 @@ public final class MqttProtocolImpl implements MqttProtocol {
 			public void onFailure(final Throwable throwable) {
 				MqttProtocolImpl.this.errorMsg = "Impossible to CONNECT to the MQTT server, terminating "
 						+ throwable.getMessage();
-				MqttProtocolImpl.this.logService.log(LOG_ERROR, MqttProtocolImpl.this.errorMsg);
+				logIfPossible(LOG_ERROR, MqttProtocolImpl.this.errorMsg);
 			}
 
 			/** {@inheritDoc} */
 			@Override
 			public void onSuccess(final Void aVoid) {
 				l.countDown();
-				MqttProtocolImpl.this.logService.log(LOG_INFO, "Successfully Connected to Host");
+				logIfPossible(LOG_INFO, "Successfully Connected to Host");
 			}
 
 		});
 		try {
 			if (!l.await(5, TimeUnit.SECONDS)) {
 				this.errorMsg = "Impossible to CONNECT to the MQTT server: TIMEOUT. Terminating";
-				this.logService.log(LOG_ERROR, this.errorMsg);
+				logIfPossible(LOG_ERROR, this.errorMsg);
 				this.exceptionOccurred(this.errorMsg);
 			}
 		} catch (final InterruptedException e) {
 			this.errorMsg = "\"Impossible to CONNECT to the MQTT server, terminating\"";
-			this.logService.log(LOG_ERROR, this.errorMsg);
+			logIfPossible(LOG_ERROR, this.errorMsg);
 			this.exceptionOccurred(this.errorMsg);
 
 		}
@@ -292,13 +297,13 @@ public final class MqttProtocolImpl implements MqttProtocol {
 				/** {@inheritDoc} */
 				@Override
 				public void onFailure(final Throwable throwable) {
-					MqttProtocolImpl.this.logService.log(LOG_ERROR, "Error while disconnecting");
+					logIfPossible(LOG_ERROR, "Error while disconnecting");
 				}
 
 				/** {@inheritDoc} */
 				@Override
 				public void onSuccess(final Void aVoid) {
-					MqttProtocolImpl.this.logService.log(LOG_INFO, "Successfully disconnected");
+					logIfPossible(LOG_INFO, "Successfully disconnected");
 				}
 			});
 		}
@@ -317,8 +322,7 @@ public final class MqttProtocolImpl implements MqttProtocol {
 				/** {@inheritDoc} */
 				@Override
 				public void onFailure(final Throwable throwable) {
-					MqttProtocolImpl.this.logService.log(LOG_ERROR,
-							"Impossible to SUBSCRIBE to channel \"" + channel + "\"");
+					logIfPossible(LOG_ERROR, "Impossible to SUBSCRIBE to channel \"" + channel + "\"");
 					l.countDown();
 				}
 
@@ -327,13 +331,13 @@ public final class MqttProtocolImpl implements MqttProtocol {
 				public void onSuccess(final byte[] bytes) {
 					MqttProtocolImpl.this.channels.put(channel, callback);
 					l.countDown();
-					MqttProtocolImpl.this.logService.log(LOG_INFO, "Successfully subscribed to " + channel);
+					logIfPossible(LOG_INFO, "Successfully subscribed to " + channel);
 				}
 			});
 			try {
 				l.await();
 			} catch (final InterruptedException e) {
-				this.logService.log(LOG_ERROR, "Impossible to SUBSCRIBE to channel \"" + channel + "\"");
+				logIfPossible(LOG_ERROR, "Impossible to SUBSCRIBE to channel \"" + channel + "\"");
 			}
 		}
 	}
@@ -348,14 +352,13 @@ public final class MqttProtocolImpl implements MqttProtocol {
 				/** {@inheritDoc} */
 				@Override
 				public void onFailure(final Throwable throwable) {
-					MqttProtocolImpl.this.logService.log(LOG_ERROR,
-							"Exception occurred while unsubscribing: " + throwable.getMessage());
+					logIfPossible(LOG_ERROR, "Exception occurred while unsubscribing: " + throwable.getMessage());
 				}
 
 				/** {@inheritDoc} */
 				@Override
 				public void onSuccess(final Void aVoid) {
-					MqttProtocolImpl.this.logService.log(LOG_DEBUG, "Successfully unsubscribed");
+					logIfPossible(LOG_DEBUG, "Successfully unsubscribed");
 				}
 			});
 		}
