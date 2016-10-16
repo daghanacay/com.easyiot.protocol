@@ -2,7 +2,6 @@ package com.easyiot.auslora_websocket.protocol.provider;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.osgi.service.component.annotations.Activate;
