@@ -36,10 +36,12 @@ public class AusloraWebsocketWhiteBoard {
 		String ausloraServerId = (String) props.get("ausloraServerId");
 		String applicationId = (String) props.get("applicationId");
 		String deviceEUI = (String) props.get("deviceEUI");
+		String securityToken = (String) props.get("securityToken");
 		if (applicationId != null && !applicationId.isEmpty()) {
 			AusloraWebsocketProtocol registeredProtocol = _ausloraWebsocketProtocols.get(ausloraServerId);
 			if (registeredProtocol != null) {
-				registeredProtocol.connect(applicationId, deviceEUI, l);
+				String deviceChannel = String.format("app?id=%s&token=%s", applicationId, securityToken);
+				registeredProtocol.connect(deviceChannel, deviceEUI, l);
 				l.setProtocolHandler(registeredProtocol);
 			}
 

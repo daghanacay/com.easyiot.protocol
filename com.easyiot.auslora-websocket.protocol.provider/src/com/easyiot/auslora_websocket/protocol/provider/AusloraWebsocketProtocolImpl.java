@@ -58,7 +58,10 @@ public class AusloraWebsocketProtocolImpl implements AusloraWebsocketProtocol {
 				if (str.contains("\"cmd\":\"gw\"")) {
 					AusloraMetadataDTO newMetaData = dtoConverter.decoder(AusloraMetadataDTO.class).get(str);
 					// Decode payload
-					deviceMap.get(newMetaData.EUI).processMessage(newMetaData);
+					AusloraWebsocketListener existingDevice = deviceMap.get(newMetaData.EUI);
+					if (existingDevice != null) {
+						deviceMap.get(newMetaData.EUI).processMessage(newMetaData);
+					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
