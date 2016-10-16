@@ -11,7 +11,7 @@ import com.easyiot.base.api.Protocol;
  *
  */
 @ProviderType
-public interface WebsocketProtocol extends Protocol{
+public interface WebsocketProtocol extends Protocol {
 
 	/**
 	 * Connects to channel. channel here is the WS endpoint. For example
@@ -24,7 +24,7 @@ public interface WebsocketProtocol extends Protocol{
 	 *            id the callback to receive any information from the server
 	 */
 	public void connect(String channel, final WsListener callback);
-	
+
 	/**
 	 * Disconnects from channel.
 	 * 
@@ -46,5 +46,10 @@ public interface WebsocketProtocol extends Protocol{
 	 *            message to be sent to websocket
 	 */
 	public void sendMessage(String channel, String message);
+
+	/**
+	 * Disconnects all the channels/devices from the connection
+	 */
+	public void disconnectAll();
 
 }

@@ -2,6 +2,7 @@ package com.easyiot.auslora_websocket.protocol.provider;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.osgi.service.component.annotations.Activate;
@@ -77,5 +78,12 @@ public class AusloraWebsocketProtocolImpl implements AusloraWebsocketProtocol {
 	@Override
 	public void sendMessage(String applicationID, String deviceEUI, String message) {
 		wsClient.sendMessage(applicationID, message);
+	}
+
+	@Override
+	public void disconnectAll() {
+		deviceMap.clear();
+		callbackMap.clear();
+		wsClient.disconnectAll();
 	}
 }

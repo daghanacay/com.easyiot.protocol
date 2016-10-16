@@ -10,6 +10,7 @@ import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -131,6 +132,15 @@ public class WebsocketProtocolImpl implements WebsocketProtocol {
 	}
 
 	@Override
+	public void disconnectAll() {
+
+		for (Entry<String, WsEndpoint> endpoint : channelList.entrySet()) {
+			endpoint.getValue().removeAllMessageListeners();
+		}
+
+	}
+
+	@Override
 	public void disconnect(String channel, WsListener callback) {
 		WsEndpoint endpoint;
 		if ((endpoint = channelList.get(channel)) != null) {
@@ -157,6 +167,10 @@ public class WebsocketProtocolImpl implements WebsocketProtocol {
 		public WsEndpoint(URI serverURI, WsListener callback) {
 			super(serverURI);
 			addMessageListener(callback);
+		}
+
+		public void removeAllMessageListeners() {
+			messageListeners.clear();
 		}
 
 		@Override
@@ -193,5 +207,4 @@ public class WebsocketProtocolImpl implements WebsocketProtocol {
 		}
 
 	}
-
 }

@@ -16,4 +16,11 @@ public interface AusloraWebsocketListener {
 	 * @param ausloraData
 	 */
 	public void processMessage(AusloraMetadataDTO ausloraData);
+	
+	/**
+	 * Sets the protocol instance for the client so they can access it directly
+	 * 
+	 * @param protocolInstance
+	 */
+	public void setProtocolHandler(AusloraWebsocketProtocol protocolInstance);
 }

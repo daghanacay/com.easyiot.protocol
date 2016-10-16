@@ -42,6 +42,11 @@ public interface AusloraWebsocketProtocol extends Protocol {
 	public void disconnect(String applicationID, String deviceEUI, final AusloraWebsocketListener callback);
 
 	/**
+	 * Disconnects all the listeners
+	 */
+	public void disconnectAll();
+
+	/**
 	 * Sends message to a device in an application
 	 * 
 	 * @param applicationID
