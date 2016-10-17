@@ -15,7 +15,7 @@ import com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketProtocol;
 public class AusloraWebsocketWhiteBoard {
 	private Map<String, AusloraWebsocketProtocol> _ausloraWebsocketProtocols = new ConcurrentHashMap<>();
 
-	@Reference(cardinality = ReferenceCardinality.OPTIONAL, policy = ReferencePolicy.DYNAMIC, unbind = "removeAusloraProtocol")
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC, unbind = "removeAusloraProtocol")
 	void _addAusloraProtocol(AusloraWebsocketProtocol protocol, Map<String, Object> props) {
 		String id = (String) props.get("id");
 		if (id != null && !id.isEmpty()) {
@@ -31,7 +31,7 @@ public class AusloraWebsocketWhiteBoard {
 		}
 	}
 
-	@Reference(cardinality = ReferenceCardinality.OPTIONAL, policy = ReferencePolicy.DYNAMIC, unbind = "removeAusloraListener")
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC, unbind = "removeAusloraListener")
 	void addAusloraListener(AusloraWebsocketListener l, Map<String, Object> props) {
 		String ausloraServerId = (String) props.get("ausloraServerId");
 		String applicationId = (String) props.get("applicationId");
