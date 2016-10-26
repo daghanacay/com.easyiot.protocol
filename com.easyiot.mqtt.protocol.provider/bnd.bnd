@@ -6,6 +6,8 @@
 Bundle-Version: 1.0.0.${tstamp}
 Bundle-Description: 				\
 	Provides implementation for the MQTT protocol 
+	
+Bundle-Category: EasyIoT
 
 Private-Package: \
 	com.easyiot.mqtt.protocol.provider,\

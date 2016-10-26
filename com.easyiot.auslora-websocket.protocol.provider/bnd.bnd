@@ -6,7 +6,7 @@
 Bundle-Version:					1.0.0.${tstamp}
 Bundle-Description: 				\
 	Implements auslora-websocket protocol.
-
+Bundle-Category: EasyIoT
 Private-Package: \
 	com.easyiot.auslora_websocket.protocol.provider,\
 	com.easyiot.websocket.protocol.provider.configuration

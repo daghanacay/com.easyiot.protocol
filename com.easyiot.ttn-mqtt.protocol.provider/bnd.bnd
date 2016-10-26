@@ -6,6 +6,8 @@
 Bundle-Version:					1.0.0.${tstamp}
 Bundle-Description: 				\
 	ttn protocol implementation that uses mqtt protocol underneath
+	
+Bundle-Category: EasyIoT
 
 Private-Package: \
 	com.easyiot.ttn_mqtt.protocol.provider,\

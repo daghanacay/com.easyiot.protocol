@@ -7,7 +7,7 @@ Bundle-Version:					1.0.0.${tstamp}
 Bundle-Description: 				\
 	Implements the bluetooth protocol. It uses bluecove as the underlying library. \
 	It works on Linu_x64, arm and windows systems. Tested on Linux_64
-
+Bundle-Category: EasyIoT
 Private-Package: \
 	com.easyiot.bluetooth.protocol.provider,\
 	com.intel.bluetooth.obex,\

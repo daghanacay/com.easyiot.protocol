@@ -1,7 +1,7 @@
 Bundle-Version:					1.0.0.${tstamp}
 Bundle-Description: 				\
 	Provides an implementation for GPIO protocol to be used on Raspberry Pi Model2B_Rev1 or ModelB_Plus_Rev1 versions.
-
+Bundle-Category: EasyIoT
 Private-Package: \
 	com.easyiot.gpio.protocol.provider,\
 	com.easyiot.gpio.protocol.provider.configuration

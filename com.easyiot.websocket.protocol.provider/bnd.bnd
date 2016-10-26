@@ -1,6 +1,8 @@
 Bundle-Version:					1.0.0.${tstamp}
 Bundle-Description: 				\
 	An implementation of websocket protocol based on JSR-356
+	
+Bundle-Category: EasyIoT
 
 Private-Package: \
 	com.easyiot.websocket.protocol.provider,\
