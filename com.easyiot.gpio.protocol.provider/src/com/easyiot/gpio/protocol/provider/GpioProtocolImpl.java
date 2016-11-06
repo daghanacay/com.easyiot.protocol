@@ -12,11 +12,15 @@ import com.easyiot.gpio.protocol.api.GpioProtocol;
 import com.easyiot.gpio.protocol.api.InputOutputEnum;
 import com.easyiot.gpio.protocol.api.PinLevelEnum;
 import com.easyiot.gpio.protocol.api.PinNumberEnum;
+import com.easyiot.gpio.protocol.api.PinTypeEnum;
 import com.easyiot.gpio.protocol.api.exception.NotInputPinException;
 import com.easyiot.gpio.protocol.api.exception.NotOutputPinException;
 import com.easyiot.gpio.protocol.api.exception.PinAlreadyConfiguredException;
 import com.easyiot.gpio.protocol.provider.configuration.GpioProtocolConfiguration;
 import com.pi4j.io.gpio.GpioController;
+import com.pi4j.io.gpio.GpioPin;
+import com.pi4j.io.gpio.GpioPinAnalogInput;
+import com.pi4j.io.gpio.GpioPinAnalogOutput;
 import com.pi4j.io.gpio.GpioPinDigitalInput;
 import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.Pin;
@@ -46,31 +50,31 @@ public class GpioProtocolImpl implements GpioProtocol {
 	}
 
 	@Override
-	public void configurePin(PinNumberEnum pinNumber, InputOutputEnum pinFunction, PinLevelEnum defaultValue)
-			throws PinAlreadyConfiguredException {
-		Pin pin = (Pin) findPin(pinNumber.getVal());
+	public void configurePin(PinNumberEnum pinNumber, PinTypeEnum pinType, InputOutputEnum pinFunction,
+			PinLevelEnum defaultValue) throws PinAlreadyConfiguredException {
+		Pin pin = (Pin) getPinByName(pinNumber.getVal());
 		if (isProvisioned(pin)) {
 			throw new PinAlreadyConfiguredException();
 		}
-		provisionPin(pinFunction, defaultValue, pin);
+		provisionPin(pinFunction, defaultValue, pin, pinType);
 	}
 
 	@Override
-	public void forceConfigurePin(PinNumberEnum pinNumber, InputOutputEnum pinFunction, PinLevelEnum defaultValue) {
-		Pin pin = (Pin) findPin(pinNumber.getVal());
+	public void forceConfigurePin(PinNumberEnum pinNumber, PinTypeEnum pinType, InputOutputEnum pinFunction,
+			PinLevelEnum defaultValue) {
+		Pin pin = (Pin) getPinByName(pinNumber.getVal());
 		unprovision(pin);
-		provisionPin(pinFunction, defaultValue, pin);
+		provisionPin(pinFunction, defaultValue, pin, pinType);
 	}
 
 	@Override
-	public boolean readPinValue(PinNumberEnum pinNumber) throws NotInputPinException {
+	public boolean readDigitalPinValue(PinNumberEnum pinNumber) throws NotInputPinException {
 		boolean returnVal = false;
-		Pin pin = findPin(pinNumber.getVal());
-		if ((pin == null) || !(pin instanceof GpioPinDigitalInput)) {
+		GpioPinDigitalInput digitalIn = getProvisionedPin(pinNumber.getVal(), GpioPinDigitalInput.class);
+		if (digitalIn == null) {
 			throw new NotInputPinException();
 		}
-		GpioPinDigitalInput pinDigital = (GpioPinDigitalInput) pin;
-		if (gpioContoller.getState(pinDigital).isHigh()) {
+		if (gpioContoller.getState(digitalIn).isHigh()) {
 			returnVal = true;
 		} else {
 			returnVal = false;
@@ -80,51 +84,115 @@ public class GpioProtocolImpl implements GpioProtocol {
 	}
 
 	@Override
-	public void writePinValue(PinNumberEnum pinNumber, boolean value) throws NotOutputPinException {
-		Pin pin = findPin(pinNumber.getVal());
-		if ((pin == null) || !(pin instanceof GpioPinDigitalOutput)) {
+	public void writeDigitalPinValue(PinNumberEnum pinNumber, boolean value) throws NotOutputPinException {
+		GpioPinDigitalOutput digitalOut = getProvisionedPin(pinNumber.getVal(), GpioPinDigitalOutput.class);
+		if (digitalOut == null) {
 			throw new NotOutputPinException();
 		}
-		GpioPinDigitalOutput pinDigital = (GpioPinDigitalOutput) pin;
 		if (value) {
-			pinDigital.setState(PinState.HIGH);
+			digitalOut.setState(PinState.HIGH);
 		} else {
-			pinDigital.setState(PinState.LOW);
+			digitalOut.setState(PinState.LOW);
 		}
 	}
 
-	private void provisionPin(InputOutputEnum pinFunction, PinLevelEnum defaultValue, Pin pin) {
-		switch (pinFunction) { // Get request sets the input pin
-		case input:
-			GpioPinDigitalInput digitalIn = this.gpioContoller.provisionDigitalInputPin(pin);
-			switch (defaultValue) {
-			case high:
-				digitalIn.setPullResistance(PinPullResistance.PULL_UP);
-				break;
+	@Override
+	public double readAnalogPinValue(PinNumberEnum pinNumber) throws NotInputPinException {
+		GpioPinAnalogInput analogIn = getProvisionedPin(pinNumber.getVal(), GpioPinAnalogInput.class);
+		if (analogIn == null) {
+			throw new NotOutputPinException();
+		}
+		return analogIn.getValue();
+	}
 
-			case low:
-				digitalIn.setPullResistance(PinPullResistance.PULL_DOWN);
+	@Override
+	public void writeAnalogPinValue(PinNumberEnum pinNumber, double value) throws NotOutputPinException {
+		GpioPinAnalogOutput analogOut = getProvisionedPin(pinNumber.getVal(), GpioPinAnalogOutput.class);
+		if (analogOut == null) {
+			throw new NotOutputPinException();
+		}
+		analogOut.setValue(value);
+	}
+
+	private void provisionPin(InputOutputEnum pinFunction, PinLevelEnum defaultValue, Pin pin, PinTypeEnum pinType) {
+		switch (pinType) {
+		case analog:
+			switch (pinFunction) { // Get request sets the input pin
+			case input:
+				GpioPinAnalogInput analogIn = this.gpioContoller.provisionAnalogInputPin(pin);
+				switch (defaultValue) {
+				case high:
+					analogIn.setPullResistance(PinPullResistance.PULL_UP);
+					break;
+				case low:
+					analogIn.setPullResistance(PinPullResistance.PULL_DOWN);
+					break;
+				}
+				break;
+			// Post request sets the output pin
+			case output:
+				GpioPinAnalogOutput analogOut = this.gpioContoller.provisionAnalogOutputPin(pin);
+
+				switch (defaultValue) {
+				case high:
+					analogOut.setValue(5.0);
+					break;
+				case low:
+					analogOut.setValue(0.0);
+					break;
+				}
 				break;
 			}
 			break;
-		// Post request sets the output pin
-		case output:
-			GpioPinDigitalOutput digitalOut = this.gpioContoller.provisionDigitalOutputPin(pin);
+		case digital:
+			switch (pinFunction) { // Get request sets the input pin
+			case input:
+				GpioPinDigitalInput digitalIn = this.gpioContoller.provisionDigitalInputPin(pin);
+				switch (defaultValue) {
+				case high:
+					digitalIn.setPullResistance(PinPullResistance.PULL_UP);
+					break;
 
-			switch (defaultValue) {
-			case high:
-				digitalOut.setState(true);
+				case low:
+					digitalIn.setPullResistance(PinPullResistance.PULL_DOWN);
+					break;
+				}
 				break;
-			case low:
-				digitalOut.setState(false);
+			// Post request sets the output pin
+			case output:
+				GpioPinDigitalOutput digitalOut = this.gpioContoller.provisionDigitalOutputPin(pin);
+
+				switch (defaultValue) {
+				case high:
+					digitalOut.setState(true);
+					break;
+				case low:
+					digitalOut.setState(false);
+					break;
+				}
 				break;
 			}
 			break;
 		}
 	}
 
-	private Pin findPin(int pinNumber) {
+	private Pin getPinByName(int pinNumber) {
 		return RaspiPin.getPinByName("GPIO " + pinNumber);
+	}
+
+	// generic method for getting any type of GpioPin
+	private <T extends GpioPin> T getProvisionedPin(int pinNumber, Class<T> clazz) {
+		for (GpioPin tmp : gpioContoller.getProvisionedPins()) {
+			if (tmp.getPin().getAddress() == pinNumber) {
+				// Cast the pin as it is configured, can be digital or analog
+				if (clazz.isInstance(tmp)) {
+					return clazz.cast(tmp);
+				} else {
+					return null;
+				}
+			}
+		}
+		return null;
 	}
 
 	private void unprovision(Pin pin) {
@@ -135,5 +203,4 @@ public class GpioProtocolImpl implements GpioProtocol {
 	private boolean isProvisioned(Pin pin) {
 		return gpioContoller.getProvisionedPins().stream().filter(tempPin -> pin.equals(tempPin)).findAny().isPresent();
 	}
-
 }

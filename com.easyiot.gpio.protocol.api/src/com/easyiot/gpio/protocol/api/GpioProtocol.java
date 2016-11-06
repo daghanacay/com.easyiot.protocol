@@ -21,8 +21,8 @@ public interface GpioProtocol extends Protocol {
 	 *            default output for output pins and pull resistance for input
 	 *            pins
 	 */
-	public void configurePin(PinNumberEnum pinNumber, InputOutputEnum pinFunction, PinLevelEnum defaultValue)
-			throws PinAlreadyConfiguredException;
+	public void configurePin(PinNumberEnum pinNumber, PinTypeEnum pinType, InputOutputEnum pinFunction,
+			PinLevelEnum defaultValue) throws PinAlreadyConfiguredException;
 
 	/**
 	 * Same as
@@ -38,24 +38,43 @@ public interface GpioProtocol extends Protocol {
 	 *            default output for output pins and pull resistance for input
 	 *            pins
 	 */
-	public void forceConfigurePin(PinNumberEnum pinNumber, InputOutputEnum pinFunction, PinLevelEnum defaultValue);
+	public void forceConfigurePin(PinNumberEnum pinNumber, PinTypeEnum pinType, InputOutputEnum pinFunction,
+			PinLevelEnum defaultValue);
 
 	/**
-	 * Reads the value of a pin which is already set as an input pin.
+	 * Reads the value of a digital pin which is already set as an input pin.
 	 * 
 	 * @param pinNumber
 	 * @return
 	 * @throws NotInputPinException
 	 */
-	public boolean readPinValue(PinNumberEnum pinNumber) throws NotInputPinException;
+	public boolean readDigitalPinValue(PinNumberEnum pinNumber) throws NotInputPinException;
 
 	/**
-	 * Writes a value on the pin which is already set as input pin.
+	 * Writes a value on a digital pin which is already set as output pin.
 	 * 
 	 * @param pinNumber
 	 * @param value
 	 * @throws NotOutputPinException
 	 */
-	public void writePinValue(PinNumberEnum pinNumber, boolean value) throws NotOutputPinException;
+	public void writeDigitalPinValue(PinNumberEnum pinNumber, boolean value) throws NotOutputPinException;
+
+	/**
+	 * Reads the value of an analog pin which is already set as an input pin.
+	 * 
+	 * @param pinNumber
+	 * @return
+	 * @throws NotInputPinException
+	 */
+	public double readAnalogPinValue(PinNumberEnum pinNumber) throws NotInputPinException;
+
+	/**
+	 * Writes a value on an analog pin which is already set as output pin.
+	 * 
+	 * @param pinNumber
+	 * @param value
+	 * @throws NotOutputPinException
+	 */
+	public void writeAnalogPinValue(PinNumberEnum pinNumber, double value) throws NotOutputPinException;
 
 }
