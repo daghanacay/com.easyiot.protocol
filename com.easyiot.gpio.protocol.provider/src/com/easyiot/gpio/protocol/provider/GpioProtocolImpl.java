@@ -1,6 +1,8 @@
 package com.easyiot.gpio.protocol.provider;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Optional;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -52,7 +54,7 @@ public class GpioProtocolImpl implements GpioProtocol {
 	@Override
 	public void configurePin(PinNumberEnum pinNumber, PinTypeEnum pinType, InputOutputEnum pinFunction,
 			PinLevelEnum defaultValue) throws PinAlreadyConfiguredException {
-		Pin pin = (Pin) getPinByName(pinNumber.getVal());
+		Pin pin = getPinByName(pinNumber.getVal());
 		if (isProvisioned(pin)) {
 			throw new PinAlreadyConfiguredException();
 		}
@@ -62,7 +64,7 @@ public class GpioProtocolImpl implements GpioProtocol {
 	@Override
 	public void forceConfigurePin(PinNumberEnum pinNumber, PinTypeEnum pinType, InputOutputEnum pinFunction,
 			PinLevelEnum defaultValue) {
-		Pin pin = (Pin) getPinByName(pinNumber.getVal());
+		Pin pin = getPinByName(pinNumber.getVal());
 		unprovision(pin);
 		provisionPin(pinFunction, defaultValue, pin, pinType);
 	}
@@ -196,11 +198,13 @@ public class GpioProtocolImpl implements GpioProtocol {
 	}
 
 	private void unprovision(Pin pin) {
-		gpioContoller.getProvisionedPins().stream().filter(tempPin -> pin.equals(tempPin)).findAny()
+		gpioContoller.getProvisionedPins().stream().filter(tempPin -> pin.equals(tempPin.getPin())).findFirst()
 				.ifPresent(tempPin -> gpioContoller.unprovisionPin(tempPin));
+
 	}
 
 	private boolean isProvisioned(Pin pin) {
-		return gpioContoller.getProvisionedPins().stream().filter(tempPin -> pin.equals(tempPin)).findAny().isPresent();
+		return gpioContoller.getProvisionedPins().stream().filter(tempPin -> pin.equals(tempPin.getPin())).findAny()
+				.isPresent();
 	}
 }
