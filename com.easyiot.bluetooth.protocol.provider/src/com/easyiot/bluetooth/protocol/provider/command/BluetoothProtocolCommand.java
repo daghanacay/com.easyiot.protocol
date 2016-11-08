@@ -15,7 +15,7 @@ import osgi.enroute.debug.api.Debug;
  *
  */
 @Component(service = BluetoothProtocolCommand.class, immediate = true, property = { Debug.COMMAND_SCOPE + "=bt",
-		Debug.COMMAND_FUNCTION + "=search" })
+		Debug.COMMAND_FUNCTION + "=search", Debug.COMMAND_FUNCTION + "=write" })
 public class BluetoothProtocolCommand {
 	@Reference
 	BluetoothProtocol btProtocol;
@@ -23,18 +23,38 @@ public class BluetoothProtocolCommand {
 	/**
 	 * provides a command for searching bluetooth enabled devices
 	 * 
+	 * usage
+	 * 
+	 * bt:search NOAUTHENTICATE_NOENCRYPT bt:search AUTHENTICATE_NOENCRYPT
+	 * bt:search AUTHENTICATE_ENCRYPT
+	 * 
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	public void search() {
+	public void search(String encryptAuth) {
 		btProtocol.searchDevices().stream().peek(device -> {
 			System.out.println("Found device:");
 			System.out.println(device.getBluetoothAddress() + device.getFriendlyName());
-		}).map(device -> btProtocol.searchServices(device, AuthEncryptEnum.AUTHENTICATE_NOENCRYPT))
+		}).map(device -> btProtocol.searchServices(device, AuthEncryptEnum.valueOf(encryptAuth)))
 				.forEach(serviceList -> {
 					System.out.println("Found services");
 					serviceList.forEach(service -> System.out.println(service.getConnectionUrl()));
 				});
+	}
+
+	/**
+	 * Sends data through SPP protocol. Check the host configuration in
+	 * BluetoothConfiguration to find out which device it will be sent to.
+	 * 
+	 * usage
+	 * 
+	 * bt:write 2 hello
+	 * 
+	 * @param sppServiceNumber
+	 * @param data
+	 */
+	public void write(String sppServiceNumber, String data) {
+		btProtocol.sendDataThroughSPP(sppServiceNumber, data);
 	}
 
 }

@@ -42,14 +42,17 @@ import com.easyiot.bluetooth.protocol.api.exception.SppCommFailed;
 import com.easyiot.bluetooth.protocol.provider.configuration.BluetoothConfiguration;
 import com.intel.bluetooth.BluetoothConsts;
 
+import osgi.enroute.configurer.api.RequireConfigurerExtender;
+
 /**
  * Implementation of bluetooth protocol. Uses bluecove libraries.
  * 
  * @author daghan
  *
  */
+@RequireConfigurerExtender
 @Designate(ocd = BluetoothConfiguration.class, factory = true)
-@Component(name = "com.easyiot.bluetooth.protocol", configurationPolicy = ConfigurationPolicy.REQUIRE)
+@Component(name = "com.easyiot.bluetooth.protocol", immediate = true, configurationPolicy = ConfigurationPolicy.REQUIRE)
 public final class BluetoothProtocolImpl implements BluetoothProtocol {
 	// Timeout in seconds
 	private static final long CONNECTION_TIMEOUT = 50;
@@ -86,6 +89,8 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 			OutputStream outStream = streamConnection.openOutputStream();
 			PrintWriter pWriter = new PrintWriter(new OutputStreamWriter(outStream));
 			pWriter.write(data);
+			pWriter.write("\n");
+			pWriter.write("\n");
 			pWriter.flush();
 			outStream.close();
 			streamConnection.close();
@@ -120,7 +125,7 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 			throw new BluetoothException(e1);
 		} catch (InterruptedException e) {
 			throw new BluetoothException("Cannot get the lock. Please wait until service search is finished.");
-		}finally {
+		} finally {
 			connectionLock.unlock();
 		}
 
@@ -138,7 +143,7 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 		UUID[] searchUuidSet = new UUID[] { BluetoothConsts.SERIAL_PORT_UUID };
 		// Service name
 		int[] attrIDs = new int[] { 0x0100 };
-		ServiceDiscoveryListener listener = new ServiceDiscoveryListener();
+		ServiceDiscoveryListener listener = new ServiceDiscoveryListener(serviceAuthEncrypt);
 
 		try {
 			this.connectionLock.tryLock(5, TimeUnit.SECONDS);
@@ -192,7 +197,6 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 
 		@Override
 		public void inquiryCompleted(int discType) {
-			System.out.println("Device Inquiry completed!");
 			// Releases the countdown latch
 			l.countDown();
 		}
@@ -241,7 +245,12 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 	}
 
 	public class ServiceDiscoveryListener implements DiscoveryListener {
-		List<BluetoothService> servicesFound = new ArrayList<>();
+		private List<BluetoothService> servicesFound = new ArrayList<>();
+		private AuthEncryptEnum serviceAuthEncrypt;
+
+		public ServiceDiscoveryListener(AuthEncryptEnum serviceAuthEncrypt) {
+			this.serviceAuthEncrypt = serviceAuthEncrypt;
+		}
 
 		public List<BluetoothService> getServices() {
 			return servicesFound;
@@ -263,7 +272,6 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 
 		@Override
 		public void serviceSearchCompleted(int arg0, int arg1) {
-			System.out.println("Service Inquiry completed!");
 			// Releases the countdown latch
 			l.countDown();
 		}
@@ -271,7 +279,7 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 		@Override
 		public void servicesDiscovered(int transID, ServiceRecord[] servRecord) {
 			for (int i = 0; i < servRecord.length; i++) {
-				String url = servRecord[i].getConnectionURL(ServiceRecord.AUTHENTICATE_ENCRYPT, false);
+				String url = servRecord[i].getConnectionURL(serviceAuthEncrypt.getVal(), false);
 				if (url == null) {
 					continue;
 				}
@@ -288,7 +296,7 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 
 		private BluetoothService createBluetoothService(String url) {
 			return new BluetoothService() {
-				
+
 				@Override
 				public String getConnectionUrl() {
 					return url;

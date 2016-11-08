@@ -35,8 +35,8 @@ Bundle-NativeCode: libbluecove_armv5tel.so;osname=Linux,\
 	lib/libbluecove_armv5tel.so,\
 	lib/libbluecove_x64.so,\
 	lib/libbluecove.so,\
-	lib/libbluecove_arm.so
-
+	lib/libbluecove_arm.so,\
+	{configuration=configuration}
 
 -runrequires:  \
 	osgi.identity;filter:='(osgi.identity=com.easyiot.bluetooth.protocol.provider)'

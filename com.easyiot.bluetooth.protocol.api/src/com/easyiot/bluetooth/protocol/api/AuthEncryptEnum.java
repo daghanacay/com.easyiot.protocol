@@ -8,7 +8,7 @@ public enum AuthEncryptEnum {
 		this.val = val;
 	}
 
-	int getVal() {
+	public int getVal() {
 		return this.val;
 	}
 }

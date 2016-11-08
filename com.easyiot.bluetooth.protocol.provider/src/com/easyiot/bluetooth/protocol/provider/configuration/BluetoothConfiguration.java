@@ -16,6 +16,6 @@ public @interface BluetoothConfiguration {
 	/**
 	 * MQTT broker Server Address
 	 */
-	@AttributeDefinition(name = "Host address", description = "Bluetooth host address", required = true)
+	@AttributeDefinition(name = "Host address", description = "Bluetooth host address", required = false)
 	public String host() default "";
 }

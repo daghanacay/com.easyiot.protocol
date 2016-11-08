@@ -1,0 +1,8 @@
+[
+  {
+    "service.factoryPid" : "com.easyiot.bluetooth.protocol",
+    "service.pid" : "btprotocol",
+    "id" : "btprotocol.1",
+    "host" : "0F03E0C24A69"
+  }
+]

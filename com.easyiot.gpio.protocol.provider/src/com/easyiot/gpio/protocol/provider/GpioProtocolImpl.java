@@ -1,8 +1,6 @@
 package com.easyiot.gpio.protocol.provider;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Optional;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
