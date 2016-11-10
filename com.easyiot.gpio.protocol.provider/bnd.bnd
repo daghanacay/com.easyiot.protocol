@@ -4,7 +4,8 @@ Bundle-Description: 				\
 Bundle-Category: EasyIoT
 Private-Package: \
 	com.easyiot.gpio.protocol.provider,\
-	com.easyiot.gpio.protocol.provider.configuration
+	com.easyiot.gpio.protocol.provider.configuration,\
+	
 	
 -buildpath: \
 	osgi.enroute.base.api;version=1.0,\
@@ -22,7 +23,21 @@ Private-Package: \
 	osgi.identity;filter:='(osgi.identity=com.easyiot.gpio.protocol.provider)'
 	
 -runbundles: \
-	${error;Resolve first}
+	com.easyiot.base.provider;version='[1.0.0,1.0.1)',\
+	com.easyiot.gpio.protocol.provider;version=snapshot,\
+	org.apache.felix.configadmin;version='[1.8.8,1.8.9)',\
+	org.apache.felix.log;version='[1.0.1,1.0.2)',\
+	org.apache.felix.scr;version='[2.0.2,2.0.3)',\
+	org.eclipse.equinox.event;version='[1.3.100,1.3.101)',\
+	org.eclipse.equinox.metatype;version='[1.4.100,1.4.101)',\
+	org.osgi.service.event;version='[1.3.1,1.3.2)',\
+	org.osgi.service.metatype;version='[1.3.0,1.3.1)',\
+	osgi.enroute.dtos.bndlib.provider;version='[2.0.0,2.0.1)',\
+	osgi.enroute.iot.circuit.provider;version='[2.0.0,2.0.1)',\
+	osgi.enroute.iot.pi.provider;version='[2.0.0,2.0.1)',\
+	osgi.enroute.logger.simple.provider;version='[2.0.0,2.0.1)',\
+	osgi.enroute.scheduler.simple.provider;version='[2.0.0,2.0.1)',\
+	osgi.promise;version='[6.0.0,6.0.1)'
 Export-Package: \
 	com.easyiot.gpio.protocol.api,\
 	com.easyiot.gpio.protocol.api.exception

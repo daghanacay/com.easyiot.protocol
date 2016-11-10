@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>local</groupId>
+	<artifactId>central</artifactId>
+	<version>0.0.0</version>
+
+	<packaging>pom</packaging>
+
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.fusesource.hawtbuf/hawtbuf -->
+		<dependency>
+			<groupId>org.fusesource.hawtbuf</groupId>
+			<artifactId>hawtbuf</artifactId>
+			<version>1.11</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.fusesource.hawtdispatch/hawtdispatch -->
+		<dependency>
+			<groupId>org.fusesource.hawtdispatch</groupId>
+			<artifactId>hawtdispatch</artifactId>
+			<version>1.22</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.fusesource.mqtt-client/mqtt-client -->
+		<dependency>
+			<groupId>org.fusesource.mqtt-client</groupId>
+			<artifactId>mqtt-client</artifactId>
+			<version>1.14</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.osgi/osgi.enroute.iot.pi.provider -->
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>osgi.enroute.iot.pi.provider</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+
+
+	</dependencies>
+
+</project>
