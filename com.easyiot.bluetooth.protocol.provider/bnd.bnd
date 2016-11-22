@@ -20,8 +20,8 @@ Private-Package: \
 	osgi.enroute.base.api;version=1.0,\
 	com.easyiot.bluetooth.protocol.api;version=latest,\
 	com.easyiot.base.api,\
-	lib/bluecove-2.1.0.jar;version=file,\
-	lib/bluecove-gpl-2.1.0.jar;version=file
+	net.sf.bluecove:bluecove,\
+	net.sf.bluecove:bluecove-gpl
 	
 -testpath: \
 	osgi.enroute.junit.wrapper;version=4.12

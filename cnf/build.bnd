@@ -1,12 +1,11 @@
 #
 # This file is left open for you to define your macros
 #
--plugin.1.easyiot.core = \
-	aQute.bnd.deployer.repository.FixedIndexedRepo; \
-	        name		=       EasyIot-Core-Github; \
-	        locations	=       https://raw.githubusercontent.com/daghanacay/com.easyiot.core/master/cnf/release/index.xml
-
 -plugin.2.easyiot.core = \
-	aQute.bnd.deployer.repository.FixedIndexedRepo; \
-	        name		=       EasyIot-Core; \
-	        locations	=       file:///home/daghan/git/com.easyiot.core/cnf/release/index.xml
+	aQute.bnd.repository.maven.pom.provider.BndPomRepository; \
+		snapshotUrls=https://oss.sonatype.org/content/groups/osgi; \
+		releaseUrls=https://repo1.maven.org/maven2/; \
+		pom=${build}/EasyCoreMaven.xml; \
+		name=EasyCoreMaven; \
+		location=${build}/cache/EasyCoreMaven.xml
+		

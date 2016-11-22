@@ -13,7 +13,8 @@ Private-Package: \
 	osgi.enroute.base.api;version=1.0,\
 	com.easyiot.websocket.protocol.api;version=latest,\
 	com.easyiot.base.api,\
-	lib/java_websocket.jar;version=file
+	org.java-websocket:Java-WebSocket
+	
 	
 -testpath: \
 	osgi.enroute.junit.wrapper;version=4.12

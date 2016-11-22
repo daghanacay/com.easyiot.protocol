@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.easyiot</groupId>
+		<artifactId>easyiot.protocol</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<artifactId>com.easyiot.bluetooth.protocol.provider</artifactId>
+	<description>Implements the bluetooth protocol.</description>
+
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.easyiot</groupId>
+			<artifactId>com.easyiot.bluetooth.protocol.api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.sf.bluecove/bluecove -->
+		<dependency>
+			<groupId>net.sf.bluecove</groupId>
+			<artifactId>bluecove</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.sf.bluecove/bluecove-gpl -->
+		<dependency>
+			<groupId>net.sf.bluecove</groupId>
+			<artifactId>bluecove-gpl</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+	</dependencies>
+
+</project>
