@@ -5,16 +5,18 @@
 
 Bundle-Version:					1.0.0.${tstamp}
 Bundle-Description: 				\
-	A bundle with a provider. Notice that this provider exports the API package. \
-	It also provides a JUnit test and it can be run standalone. \
-	\
-	${warning;Please update this Bundle-Description in com.easyiot.http.protocol.provider/bnd.bnd}
-
-Private-Package:  \
-	com.easyiot.http.protocol.provider
+	Implements rest protocol through apache http client. 
 	
--buildpath:  \
-	osgi.enroute.base.api;version=1.0
+Private-Package: \
+	com.easyiot.http.protocol.provider,\
+	com.easyiot.http.protocol.provider.configuration
+	
+-buildpath: \
+	osgi.enroute.base.api;version=1.0,\
+	com.easyiot.http.protocol.api;version=latest,\
+	com.easyiot.base.api,\
+	org.apache.httpcomponents.httpclient;version=4.5,\
+	org.apache.httpcomponents.httpcore;version=4.4
 	
 -testpath: \
 	osgi.enroute.junit.wrapper;version=4.12
@@ -26,4 +28,50 @@ Private-Package:  \
 	osgi.identity;filter:='(osgi.identity=com.easyiot.http.protocol.provider)'
 	
 -runbundles: \
-	${error;Resolve first}
+	com.easyiot.http.protocol.provider;version='[1.0.0,1.0.1)',\
+	org.apache.felix.configadmin;version='[1.8.8,1.8.9)',\
+	org.apache.felix.log;version='[1.0.1,1.0.2)',\
+	org.apache.felix.scr;version='[2.0.2,2.0.3)',\
+	org.eclipse.equinox.metatype;version='[1.4.100,1.4.101)',\
+	org.osgi.service.metatype;version='[1.3.0,1.3.1)'
+Export-Package: \
+	com.easyiot.http.protocol.api,\
+	com.easyiot.http.protocol.api.exception,\
+	org.apache.http.entity,\
+	org.apache.http.auth,\
+	org.apache.http.client,\
+	org.apache.commons.codec.binary,\
+	org.apache.commons.logging,\
+	org.apache.http.client.entity,\
+	org.apache.http.client.params,\
+	org.apache.http.conn.params,\
+	org.apache.http.conn.routing,\
+	org.apache.http.conn.util,\
+	org.apache.http.cookie,\
+	org.apache.http.impl,\
+	org.apache.http.impl.cookie,\
+	org.apache.http.impl.entity,\
+	org.apache.http.impl.execchain,\
+	org.apache.http.impl.io,\
+	org.apache.http.io,\
+	org.apache.http.pool,\
+	org.apache.http.ssl,\
+	org.apache.http.client.config,\
+	org.apache.http.client.methods,\
+	org.apache.http.client.protocol,\
+	org.apache.http.client.utils,\
+	org.apache.http.concurrent,\
+	org.apache.http.config,\
+	org.apache.http.conn,\
+	org.apache.http.conn.scheme,\
+	org.apache.http.conn.socket,\
+	org.apache.http.conn.ssl,\
+	org.apache.http.impl.auth,\
+	org.apache.http.impl.client,\
+	org.apache.http.impl.conn,\
+	org.apache.http.params,\
+	org.apache.http,\
+	org.apache.http.client.fluent,\
+	org.apache.http.message,\
+	org.apache.http.protocol,\
+	org.apache.http.util
