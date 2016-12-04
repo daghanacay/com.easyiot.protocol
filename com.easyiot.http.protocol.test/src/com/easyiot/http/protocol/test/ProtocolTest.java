@@ -42,9 +42,11 @@ public class ProtocolTest {
 		return st.waitForService(1000);
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void pushConfig() throws IOException {
 		ServiceReference configurationAdminReference = context.getServiceReference(ConfigurationAdmin.class.getName());
 		if (configurationAdminReference != null) {
+
 			ConfigurationAdmin confAdmin = (ConfigurationAdmin) context.getService(configurationAdminReference);
 
 			Configuration configuration = confAdmin.createFactoryConfiguration("com.easyiot.http.protocol", null);

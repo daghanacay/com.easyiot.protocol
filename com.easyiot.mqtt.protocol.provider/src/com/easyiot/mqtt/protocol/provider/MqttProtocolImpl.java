@@ -40,7 +40,7 @@ import com.easyiot.mqtt.protocol.provider.configuration.MqttConfiguration;
 /**
  * Implementation of {@link IMqttClient}
  */
-
+@SuppressWarnings("deprecation")
 @Designate(ocd = MqttConfiguration.class, factory = true)
 @Component(name = "com.easyiot.mqtt.protocol", configurationPolicy = ConfigurationPolicy.REQUIRE)
 public final class MqttProtocolImpl implements MqttProtocol {
@@ -213,6 +213,7 @@ public final class MqttProtocolImpl implements MqttProtocol {
 	/**
 	 * Connect in a thread safe manner
 	 */
+	
 	private void safelyConnect(final MQTT mqtt) throws ConnectionException {
 		if (this.isConnected) {
 			this.disconnect();
