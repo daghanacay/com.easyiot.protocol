@@ -25,6 +25,8 @@
 		<module>com.easyiot.http.protocol.provider</module>
 		<module>com.easyiot.mqtt.protocol.api</module>
 		<module>com.easyiot.mqtt.protocol.provider</module>
+		<module>com.easyiot.redis.protocol.api</module>
+		<module>com.easyiot.redis.protocol.provider</module>
 		<module>com.easyiot.ttn-mqtt.protocol.api</module>
 		<module>com.easyiot.ttn-mqtt.protocol.provider</module>
 		<module>com.easyiot.websocket.protocol.api</module>
