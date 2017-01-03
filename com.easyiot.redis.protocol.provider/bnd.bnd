@@ -1,7 +1,7 @@
 Bundle-Version:					1.0.0.${tstamp}
 Bundle-Description: 				\
 	Provides a redis protocol to be used by devices or applications. Uses [Jedis library](https://mvnrepository.com/artifact/redis.clients/jedis) as the underlying implementation.
-
+Bundle-Category: EasyIoT
 Private-Package: \
 	com.easyiot.redis.protocol.provider,\
 	com.easyiot.redis.protocol.provider.configuration

@@ -10,18 +10,25 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<artifactId>com.easyiot.redis.protocol.api</artifactId>
-	<description>API for REDIS protocol.</description>
+	<artifactId>com.easyiot.redis.protocol.provider</artifactId>
+	<description>Provides implementation for the Redis protocol.</description>
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 	</build>
 
+
 	<dependencies>
 		<dependency>
 			<groupId>com.easyiot</groupId>
-			<artifactId>com.easyiot.base.api</artifactId>
+			<artifactId>com.easyiot.redis.protocol.api</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.9.0</version>
 		</dependency>
 	</dependencies>
 </project>

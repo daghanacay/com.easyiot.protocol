@@ -6,7 +6,7 @@
 Bundle-Version:					1.0.0.${tstamp}
 Bundle-Description: 				\
 	Implements rest protocol through apache http client. 
-	
+Bundle-Category: EasyIoT	
 Private-Package: \
 	com.easyiot.http.protocol.provider,\
 	com.easyiot.http.protocol.provider.configuration
