@@ -84,18 +84,28 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 		String serverURL = String.format("btspp://%s:%s", bluetoothConfiguration.host(), sppServiceNumber);
 		StreamConnection streamConnection;
 		try {
-			streamConnection = (StreamConnection) Connector.open(serverURL);
-			// send string
-			OutputStream outStream = streamConnection.openOutputStream();
-			PrintWriter pWriter = new PrintWriter(new OutputStreamWriter(outStream));
-			pWriter.write(data);
-			pWriter.write("\n");
-			pWriter.write("\n");
-			pWriter.flush();
-			outStream.close();
-			streamConnection.close();
+			if (this.connectionLock.tryLock(5, TimeUnit.SECONDS)) {
+				streamConnection = (StreamConnection) Connector.open(serverURL);
+				// send string
+				OutputStream outStream = streamConnection.openOutputStream();
+				PrintWriter pWriter = new PrintWriter(new OutputStreamWriter(outStream));
+				pWriter.write(data);
+				pWriter.write("\n");
+				pWriter.write("\n");
+				pWriter.flush();
+				outStream.close();
+				streamConnection.close();
+			} else {
+				throw new BluetoothException("Cannot get the lock. Please wait until device is available.");
+			}
 		} catch (IOException e) {
 			throw new SppCommFailed(e);
+		} catch (InterruptedException e) {
+			throw new BluetoothException("Cannot get the lock. Please wait until device is available.");
+		} finally {
+			if (connectionLock.isHeldByCurrentThread()) {
+				connectionLock.unlock();
+			}
 		}
 
 	}
@@ -106,27 +116,32 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 		DeviceDiscoveryListener listener = new DeviceDiscoveryListener();
 
 		try {
-			this.connectionLock.tryLock(5, TimeUnit.SECONDS);
-			this.l = new CountDownLatch(1);
-			// Start search
-			LocalDevice.getLocalDevice().getDiscoveryAgent().startInquiry(DiscoveryAgent.GIAC, listener);
-			// Throw error if it does not finish in a given time
-			try {
-				if (!l.await(CONNECTION_TIMEOUT, TimeUnit.SECONDS)) {
-					this.logService.log(LOG_ERROR,
-							String.format("Device discovery TIMEOUT in %ss. Terminating.", CONNECTION_TIMEOUT));
-					throw new BluetoothException("Device discovery Timeout");
+			if (this.connectionLock.tryLock(5, TimeUnit.SECONDS)) {
+				this.l = new CountDownLatch(1);
+				// Start search
+				LocalDevice.getLocalDevice().getDiscoveryAgent().startInquiry(DiscoveryAgent.GIAC, listener);
+				// Throw error if it does not finish in a given time
+				try {
+					if (!l.await(CONNECTION_TIMEOUT, TimeUnit.SECONDS)) {
+						this.logService.log(LOG_ERROR,
+								String.format("Device discovery TIMEOUT in %ss. Terminating.", CONNECTION_TIMEOUT));
+						throw new BluetoothException("Device discovery Timeout");
+					}
+				} catch (final InterruptedException e) {
+					this.logService.log(LOG_ERROR, "Device discovery is interrupted.");
+					throw new BluetoothException("Device discovery Interrupted");
 				}
-			} catch (final InterruptedException e) {
-				this.logService.log(LOG_ERROR, "Device discovery is interrupted.");
-				throw new BluetoothException("Device discovery Interrupted");
+			} else {
+				throw new BluetoothException("Cannot get the lock. Please wait until device is available.");
 			}
 		} catch (BluetoothStateException e1) {
 			throw new BluetoothException(e1);
 		} catch (InterruptedException e) {
-			throw new BluetoothException("Cannot get the lock. Please wait until service search is finished.");
+			throw new BluetoothException("Cannot get the lock. Please wait until device is available.");
 		} finally {
-			connectionLock.unlock();
+			if (connectionLock.isHeldByCurrentThread()) {
+				connectionLock.unlock();
+			}
 		}
 
 		return listener.getDevices();
@@ -146,27 +161,32 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 		ServiceDiscoveryListener listener = new ServiceDiscoveryListener(serviceAuthEncrypt);
 
 		try {
-			this.connectionLock.tryLock(5, TimeUnit.SECONDS);
-			this.l = new CountDownLatch(1);
-			LocalDevice.getLocalDevice().getDiscoveryAgent().searchServices(attrIDs, searchUuidSet,
-					bluetoothDevice.<RemoteDevice> getDelegateDevice(), listener);
-			// Throw error if it does not finish in a given time
-			try {
-				if (!l.await(CONNECTION_TIMEOUT, TimeUnit.SECONDS)) {
-					this.logService.log(LOG_ERROR,
-							String.format("Service discovery TIMEOUT in %s. Terminating.", CONNECTION_TIMEOUT));
-					throw new BluetoothException("Service discovery Timeout");
+			if (this.connectionLock.tryLock(5, TimeUnit.SECONDS)) {
+				this.l = new CountDownLatch(1);
+				LocalDevice.getLocalDevice().getDiscoveryAgent().searchServices(attrIDs, searchUuidSet,
+						bluetoothDevice.<RemoteDevice> getDelegateDevice(), listener);
+				// Throw error if it does not finish in a given time
+				try {
+					if (!l.await(CONNECTION_TIMEOUT, TimeUnit.SECONDS)) {
+						this.logService.log(LOG_ERROR,
+								String.format("Service discovery TIMEOUT in %s. Terminating.", CONNECTION_TIMEOUT));
+						throw new BluetoothException("Service discovery Timeout");
+					}
+				} catch (final InterruptedException e) {
+					this.logService.log(LOG_ERROR, "Service discovery attempt is interrupted.");
+					throw new BluetoothException("Service discovery interrupted");
 				}
-			} catch (final InterruptedException e) {
-				this.logService.log(LOG_ERROR, "Service discovery attempt is interrupted.");
-				throw new BluetoothException("Service discovery interrupted");
+			} else {
+				throw new BluetoothException("Cannot get the lock. Please wait until device is available.");
 			}
 		} catch (InterruptedException e) {
 			throw new BluetoothException("Cannot get the lock. Please wait until device search is finished.");
 		} catch (BluetoothStateException e) {
 			throw new BluetoothException(e);
 		} finally {
-			connectionLock.unlock();
+			if (connectionLock.isHeldByCurrentThread()) {
+				connectionLock.unlock();
+			}
 		}
 
 		logService.log(LOG_DEBUG,
