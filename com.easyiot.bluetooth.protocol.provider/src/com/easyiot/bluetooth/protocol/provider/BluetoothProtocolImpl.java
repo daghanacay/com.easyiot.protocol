@@ -82,19 +82,16 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 	@Override
 	public void sendDataThroughSPP(String sppServiceNumber, String data) {
 		String serverURL = String.format("btspp://%s:%s", bluetoothConfiguration.host(), sppServiceNumber);
-		StreamConnection streamConnection;
+		StreamConnection streamConnection = null;
+		OutputStream outStream = null;
 		try {
 			if (this.connectionLock.tryLock(5, TimeUnit.SECONDS)) {
 				streamConnection = (StreamConnection) Connector.open(serverURL);
 				// send string
-				OutputStream outStream = streamConnection.openOutputStream();
+				outStream = streamConnection.openOutputStream();
 				PrintWriter pWriter = new PrintWriter(new OutputStreamWriter(outStream));
 				pWriter.write(data);
-				pWriter.write("\n");
-				pWriter.write("\n");
 				pWriter.flush();
-				outStream.close();
-				streamConnection.close();
 			} else {
 				throw new BluetoothException("Cannot get the lock. Please wait until device is available.");
 			}
@@ -106,6 +103,15 @@ public final class BluetoothProtocolImpl implements BluetoothProtocol {
 			if (connectionLock.isHeldByCurrentThread()) {
 				connectionLock.unlock();
 			}
+			if (streamConnection != null) {
+				try {
+					outStream.close();
+					streamConnection.close();
+				} catch (IOException e) {
+					// do nothing
+				}
+			}
+
 		}
 
 	}
