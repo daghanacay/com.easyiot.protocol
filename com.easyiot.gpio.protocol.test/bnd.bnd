@@ -1,0 +1,33 @@
+#
+#  OSGi TEST BUNDLE 
+#
+
+Bundle-Version:1.0.0.${tstamp}
+Bundle-Description: \
+ 	This bundle is an OSGi test bundle that tests the enRoute Blog Manager API. Projects\
+ 	that provide this API should configure their bnd.bnd file to run this test so that\
+ 	the providers can test their conformance. This bundle requires DSTest to run so this\
+ 	bundle should be included. \
+	\
+	${warning;Please update this Bundle-Description in com.easyiot.gpio.protocol.test/bnd.bnd}
+
+
+Private-Package:  \
+	com.easyiot.gpio.protocol.test
+
+Test-Cases: ${test-cases}
+
+
+-includeresource: {readme.md}
+
+-buildpath: \
+	osgi.enroute.base.api;version=1.0,\
+	osgi.enroute.junit.wrapper;version=4.12,\
+	com.easyiot.gpio.protocol.api;version=latest,\
+	com.easyiot.base.test
+
+-runrequires: \
+	osgi.identity;filter:='(osgi.identity=com.easyiot.gpio.protocol.test)'
+
+-runbundles: \
+	${error;Resolve first}

@@ -5,6 +5,8 @@ import java.util.Map;
 import org.osgi.annotation.versioning.ProviderType;
 import org.osgi.dto.DTO;
 
+import osgi.enroute.dto.api.TypeReference;
+
 /**
  * Builder for the HttpProtocol
  * 
@@ -30,14 +32,6 @@ public interface HttpProtocolBuilder {
 	public HttpProtocolBuilder addHeader(String key, String value);
 
 	/**
-	 * Sets body from an DTO object
-	 * 
-	 * @param body
-	 * @return
-	 */
-	public <T extends DTO> HttpProtocolBuilder setBody(T body);
-
-	/**
 	 * Sets body from a String
 	 * 
 	 * @param body
@@ -61,10 +55,20 @@ public interface HttpProtocolBuilder {
 	public String returnContent();
 
 	/**
-	 * Returns the content of response as a generic object
+	 * Returns the content of response as an object
 	 * 
 	 * @return
 	 */
-	public <T> T returnContentObj(Class<T> clazz);
+	public <T> T returnContent(Class<T> clazz);
+
+	/**
+	 * Returns based on type reference for generic classes
+	 * 
+	 * new TypeReference<List<AusloraDeviceDto>>() {}
+	 * 
+	 * @param ref
+	 * @return
+	 */
+	public <T> T returnContent(TypeReference<T> ref);
 
 }

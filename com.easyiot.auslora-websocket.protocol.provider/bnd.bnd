@@ -3,7 +3,7 @@
 #
 
 
-Bundle-Version:					1.0.0.${tstamp}
+Bundle-Version: 1.1.0.${tstamp}
 Bundle-Description: 				\
 	Implements auslora-websocket protocol.
 Bundle-Category: EasyIoT
@@ -15,7 +15,8 @@ Private-Package: \
 	osgi.enroute.base.api;version=1.0,\
 	com.easyiot.auslora-websocket.protocol.api;version=latest,\
 	com.easyiot.websocket.protocol.api;version=latest,\
-	com.easyiot.base.api
+	com.easyiot.base.api,\
+	com.easyiot.http.protocol.api;version=latest
 	
 -testpath: \
 	osgi.enroute.junit.wrapper;version=4.12

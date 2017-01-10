@@ -4,29 +4,27 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Dictionary;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.framework.ServiceReference;
-import org.osgi.service.cm.Configuration;
-import org.osgi.service.cm.ConfigurationAdmin;
-import org.osgi.util.tracker.ServiceTracker;
 
+import com.easyiot.base.test.util.IntegrationTestBase;
 import com.easyiot.redis.protocol.api.RedisProtocol;
 
-public class ProtocolTest {
-
-	private static final BundleContext context = FrameworkUtil.getBundle(ProtocolTest.class).getBundleContext();
+public class RedisProtocolTest extends IntegrationTestBase {
 
 	@BeforeClass
 	public static void setUpContext() {
 		try {
-			pushConfig();
+
+			Map<String, String> properties = new HashMap<>();
+			// See com.easyiot.redis.protocol HttpProtocolConfiguration
+			properties.put("host", "localhost");
+			properties.put("port", "6379");
+			pushConfig(properties, "test.service");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -118,27 +116,4 @@ public class ProtocolTest {
 		unitUnderTest.deleteData("key1");
 	}
 
-	private <T> T getService(Class<T> clazz) throws InterruptedException {
-		ServiceTracker<T, T> st = new ServiceTracker<>(context, clazz, null);
-		st.open();
-		return st.waitForService(1000);
-	}
-
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private static void pushConfig() throws IOException {
-		ServiceReference configurationAdminReference = context.getServiceReference(ConfigurationAdmin.class.getName());
-		if (configurationAdminReference != null) {
-
-			ConfigurationAdmin confAdmin = (ConfigurationAdmin) context.getService(configurationAdminReference);
-
-			Configuration configuration = confAdmin.createFactoryConfiguration("com.easyiot.redis.protocol", null);
-			Dictionary properties = new Hashtable<>();
-			// See com.easyiot.redis.protocol HttpProtocolConfiguration
-			properties.put("id", "test.service");
-			properties.put("host", "localhost");
-			properties.put("port", "6379");
-			configuration.update(properties);
-
-		}
-	}
 }

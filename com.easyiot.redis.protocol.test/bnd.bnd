@@ -24,7 +24,8 @@ Test-Cases: ${test-cases}
 	osgi.enroute.base.api;version=1.0,\
 	osgi.enroute.junit.wrapper;version=4.12,\
 	com.easyiot.redis.protocol.api;version=latest,\
-	com.easyiot.base.api
+	com.easyiot.base.api,\
+	com.easyiot.base.test
 
 -runrequires: \
 	osgi.identity;filter:='(osgi.identity=com.easyiot.redis.protocol.test)'

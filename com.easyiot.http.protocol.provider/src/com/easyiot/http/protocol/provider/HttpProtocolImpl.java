@@ -4,19 +4,25 @@ import org.apache.http.client.fluent.Request;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
+import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.Designate;
 
 import com.easyiot.http.protocol.api.HttpProtocol;
 import com.easyiot.http.protocol.api.HttpProtocolBuilder;
 import com.easyiot.http.protocol.provider.configuration.HttpProtocolConfiguration;
 
+import osgi.enroute.dto.api.DTOs;
+
 /**
  * Implementation of the HttpProtocol based on Apache HTTP client
  */
 
-@Component(name = "com.easyiot.http.protocol", configurationPolicy= ConfigurationPolicy.REQUIRE)
+@Component(name = "com.easyiot.http.protocol", configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = HttpProtocolConfiguration.class, factory = true)
 public class HttpProtocolImpl implements HttpProtocol {
+
+	@Reference
+	private DTOs dtosService;
 
 	HttpProtocolConfiguration configuration;
 
@@ -30,22 +36,22 @@ public class HttpProtocolImpl implements HttpProtocol {
 
 	@Override
 	public HttpProtocolBuilder GET() {
-		return new HttpProtocolBuilderImpl(Request.Get(configuration.url()));
+		return new HttpProtocolBuilderImpl(Request.Get(configuration.url()), dtosService);
 	}
 
 	@Override
 	public HttpProtocolBuilder POST() {
-		return new HttpProtocolBuilderImpl(Request.Post(configuration.url()));
+		return new HttpProtocolBuilderImpl(Request.Post(configuration.url()), dtosService);
 	}
 
 	@Override
 	public HttpProtocolBuilder PUT() {
-		return new HttpProtocolBuilderImpl(Request.Put(configuration.url()));
+		return new HttpProtocolBuilderImpl(Request.Put(configuration.url()), dtosService);
 	}
 
 	@Override
 	public HttpProtocolBuilder DELETE() {
-		return new HttpProtocolBuilderImpl(Request.Delete(configuration.url()));
+		return new HttpProtocolBuilderImpl(Request.Delete(configuration.url()), dtosService);
 	}
 
 	@Override

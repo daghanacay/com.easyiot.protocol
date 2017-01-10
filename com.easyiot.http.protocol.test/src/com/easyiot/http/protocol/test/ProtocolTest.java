@@ -1,26 +1,18 @@
 package com.easyiot.http.protocol.test;
 
-import java.io.IOException;
-import java.util.Dictionary;
-import java.util.Hashtable;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.framework.ServiceReference;
-import org.osgi.service.cm.Configuration;
-import org.osgi.service.cm.ConfigurationAdmin;
-import org.osgi.util.tracker.ServiceTracker;
 
+import com.easyiot.base.test.util.IntegrationTestBase;
 import com.easyiot.http.protocol.api.HttpProtocol;
 
 import osgi.enroute.configurer.api.RequireConfigurerExtender;
 
 @RequireConfigurerExtender
-public class ProtocolTest {
-
-	private final BundleContext context = FrameworkUtil.getBundle(this.getClass()).getBundleContext();
+public class ProtocolTest extends IntegrationTestBase {
 
 	@Test
 	public void testProtocol() throws Exception {
@@ -30,32 +22,14 @@ public class ProtocolTest {
 	@Test
 	public void testHttpService() throws Exception {
 		// This will create the component through confguration.
-		pushConfig();
+		Map<String, String> properties = new HashMap<>();
+		// See com.easyiot.http.protocol.provider HttpProtocolConfiguration
+		properties.put("id", "test.service");
+		properties.put("url", "http://google.com");
+		pushFactoryConfig(properties, "com.easyiot.http.protocol");
 		HttpProtocol protocol = getService(HttpProtocol.class);
 		String result = protocol.GET().returnContent();
 		Assert.assertNotNull(result);
 	}
 
-	private <T> T getService(Class<T> clazz) throws InterruptedException {
-		ServiceTracker<T, T> st = new ServiceTracker<>(context, clazz, null);
-		st.open();
-		return st.waitForService(1000);
-	}
-
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void pushConfig() throws IOException {
-		ServiceReference configurationAdminReference = context.getServiceReference(ConfigurationAdmin.class.getName());
-		if (configurationAdminReference != null) {
-
-			ConfigurationAdmin confAdmin = (ConfigurationAdmin) context.getService(configurationAdminReference);
-
-			Configuration configuration = confAdmin.createFactoryConfiguration("com.easyiot.http.protocol", null);
-			Dictionary properties = new Hashtable<>();
-			// See com.easyiot.http.protocol.provider HttpProtocolConfiguration
-			properties.put("id", "test.service");
-			properties.put("url", "http://google.com");
-			configuration.update(properties);
-
-		}
-	}
 }

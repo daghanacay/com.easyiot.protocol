@@ -6,25 +6,24 @@ import java.util.Map.Entry;
 
 import org.apache.http.client.fluent.Request;
 import org.apache.http.entity.ContentType;
-import org.osgi.dto.DTO;
-import org.osgi.service.component.annotations.Reference;
 
 import com.easyiot.http.protocol.api.HttpProtocolBuilder;
 import com.easyiot.http.protocol.api.exception.ConnectionProblemException;
 import com.easyiot.http.protocol.api.exception.JsonConversionException;
 
 import osgi.enroute.dto.api.DTOs;
+import osgi.enroute.dto.api.TypeReference;
 
 public class HttpProtocolBuilderImpl implements HttpProtocolBuilder {
 
-	@Reference
-	DTOs dtosService;
+	private DTOs dtosService;
 
 	// Internal delegation to http client
-	Request httpClientRequest;
+	private Request httpClientRequest;
 
-	public HttpProtocolBuilderImpl(Request httpClientRequest) {
+	public HttpProtocolBuilderImpl(Request httpClientRequest, DTOs dtosService) {
 		this.httpClientRequest = httpClientRequest;
+		this.dtosService = dtosService;
 	}
 
 	public Request getHttpClientRequest() {
@@ -42,12 +41,6 @@ public class HttpProtocolBuilderImpl implements HttpProtocolBuilder {
 	@Override
 	public HttpProtocolBuilder addHeader(String key, String value) {
 		httpClientRequest.addHeader(key, value);
-		return this;
-	}
-
-	@Override
-	public <T extends DTO> HttpProtocolBuilder setBody(T body) {
-		httpClientRequest.bodyString(body.toString(), ContentType.APPLICATION_JSON);
 		return this;
 	}
 
@@ -78,9 +71,19 @@ public class HttpProtocolBuilderImpl implements HttpProtocolBuilder {
 	}
 
 	@Override
-	public <T> T returnContentObj(Class<T> clazz) {
+	public <T> T returnContent(Class<T> clazz) {
 		try {
 			return dtosService.decoder(clazz).get(returnContent());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new JsonConversionException();
+		}
+	}
+
+	@Override
+	public <T> T returnContent(TypeReference<T> ref) {
+		try {
+			return dtosService.decoder(ref).get(returnContent());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new JsonConversionException();
