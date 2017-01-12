@@ -3,13 +3,14 @@
 #
 
 
-Bundle-Version: 1.1.0.${tstamp}
+Bundle-Version: 1.0.0.${tstamp}
 Bundle-Description: 				\
 	Implements auslora-websocket protocol.
 Bundle-Category: EasyIoT
 Private-Package: \
 	com.easyiot.auslora_websocket.protocol.provider,\
-	com.easyiot.websocket.protocol.provider.configuration
+	com.easyiot.websocket.protocol.provider.configuration,\
+	com.easyiot.auslora_websocket.protocol.provider.rest
 	
 -buildpath: \
 	osgi.enroute.base.api;version=1.0,\
@@ -36,7 +37,21 @@ Private-Package: \
 	org.osgi.service.metatype;version='[1.3.0,1.3.1)',\
 	org.apache.felix.configadmin;version='[1.8.8,1.8.9)',\
 	org.apache.felix.scr;version='[2.0.2,2.0.3)',\
-	osgi.enroute.dtos.bndlib.provider;version='[2.0.0,2.0.1)'
+	osgi.enroute.dtos.bndlib.provider;version='[2.0.0,2.0.1)',\
+	com.easyiot.http.protocol.provider;version='[1.0.0,1.0.1)',\
+	com.easyiot.http.protocol.provider;version=snapshot,\
+	log4j;version='[1.2.17,1.2.18)',\
+	org.apache.commons.codec;version='[1.10.0,1.10.1)',\
+	org.apache.commons.logging;version='[1.2.0,1.2.1)',\
+	org.apache.felix.http.jetty;version='[3.2.0,3.2.1)',\
+	org.apache.felix.http.servlet-api;version='[1.1.2,1.1.3)',\
+	org.eclipse.equinox.event;version='[1.3.100,1.3.101)',\
+	org.osgi.service.event;version='[1.3.1,1.3.2)',\
+	osgi.enroute.executor.simple.provider;version='[2.0.0,2.0.1)',\
+	osgi.enroute.rest.simple.provider;version='[2.0.0,2.0.1)',\
+	osgi.enroute.web.simple.provider;version='[2.0.0,2.0.1)',\
+	slf4j.api;version='[1.7.7,1.7.8)',\
+	slf4j.log4j12;version='[1.6.1,1.6.2)'
 Bundle-License: \
 	https://opensource.org/licenses/Apache-2.0; \
 	link=http://www.apache.org/licenses/LICENSE-2.0; \

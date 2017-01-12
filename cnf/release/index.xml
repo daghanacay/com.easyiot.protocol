@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1480838909000" name="Release" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1484216249000" name="Release" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.auslora-websocket.protocol.api"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="1.0.0.201612040808"/>
+      <attribute name="version" type="Version" value="1.0.0.201701121006"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="806380f17d4ddaa2865c333961379385309ee91af0ce1e9037156632f443e51d"/>
+      <attribute name="osgi.content" value="b0f03c069ba4c5cde921a2376d1fcfcfc1fcde64a70fe1e4c09cbe9a08539585"/>
       <attribute name="url" value="com.easyiot.auslora-websocket.protocol.api/com.easyiot.auslora-websocket.protocol.api-1.0.0.jar"/>
-      <attribute name="size" type="Long" value="9542"/>
+      <attribute name="size" type="Long" value="14310"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="com.easyiot.auslora-websocket.protocol.api"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201612040808"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201701121006"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="com.easyiot.auslora-websocket.protocol.api"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201612040808"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201701121006"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.auslora_websocket.protocol.api"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.auslora-websocket.protocol.api"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201612040808"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201701121006"/>
       <directive name="uses" value="com.easyiot.auslora_websocket.protocol.api.dto,com.easyiot.base.api"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.auslora_websocket.protocol.api.dto"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.auslora-websocket.protocol.api"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201612040808"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201701121006"/>
       <directive name="uses" value="org.osgi.dto"/>
     </capability>
     <requirement namespace="osgi.wiring.package">
@@ -52,51 +52,61 @@
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.auslora-websocket.protocol.provider"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="1.0.0.201612040808"/>
+      <attribute name="version" type="Version" value="1.0.0.201701121015"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="eca0a83c50610b6610bbb2f29d2e8929a1033764bc8865f28bd0b5ba11296ece"/>
+      <attribute name="osgi.content" value="3bd75032c10759acde317adcee86c53c52f0de18c33c835bfcd8bfc8d3672073"/>
       <attribute name="url" value="com.easyiot.auslora-websocket.protocol.provider/com.easyiot.auslora-websocket.protocol.provider-1.0.0.jar"/>
-      <attribute name="size" type="Long" value="26239"/>
+      <attribute name="size" type="Long" value="38798"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="com.easyiot.auslora-websocket.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201612040808"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201701121015"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="com.easyiot.auslora-websocket.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201612040808"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201701121015"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.auslora_websocket.protocol.api"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.auslora-websocket.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201612040808"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201701121015"/>
       <directive name="uses" value="com.easyiot.auslora_websocket.protocol.api.dto,com.easyiot.base.api"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.auslora_websocket.protocol.api.dto"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.auslora-websocket.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201612040808"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201701121015"/>
       <directive name="uses" value="org.osgi.dto"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.websocket.protocol.api"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.auslora-websocket.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201612040808"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201701121015"/>
       <directive name="uses" value="com.easyiot.base.api"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.websocket.protocol.provider"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.auslora-websocket.protocol.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201612040808"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201701121015"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <attribute name="objectClass" type="List&lt;String&gt;" value="com.easyiot.auslora_websocket.protocol.api.AusloraDeviceService"/>
     </capability>
     <capability namespace="osgi.service">
       <attribute name="objectClass" type="List&lt;String&gt;" value="com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketProtocol"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <attribute name="objectClass" type="List&lt;String&gt;" value="osgi.enroute.rest.api.REST"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <attribute name="objectClass" type="List&lt;String&gt;" value="com.easyiot.auslora_websocket.protocol.api.AusloraDeviceService"/>
+      <directive name="uses" value="com.easyiot.auslora_websocket.protocol.api"/>
     </capability>
     <capability namespace="osgi.service">
       <attribute name="objectClass" type="List&lt;String&gt;" value="com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketProtocol"/>
@@ -104,6 +114,11 @@
       <attribute name="id" value="auslora.websocket"/>
       <attribute name="port" type="Long" value="80"/>
       <directive name="uses" value="com.easyiot.auslora_websocket.protocol.api"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <attribute name="objectClass" type="List&lt;String&gt;" value="osgi.enroute.rest.api.REST"/>
+      <attribute name="osgi.http.whiteboard.servlet.pattern" value="/auslora/application/*"/>
+      <directive name="uses" value="osgi.enroute.rest.api"/>
     </capability>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=com.easyiot.auslora_websocket.protocol.api)(version&gt;=1.0.0)(!(version&gt;=1.1.0)))"/>
@@ -115,6 +130,9 @@
       <directive name="filter" value="(&amp;(osgi.wiring.package=com.easyiot.base.api)(version&gt;=1.0.0)(!(version&gt;=1.1.0)))"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.easyiot.http.protocol.api)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=com.easyiot.websocket.protocol.api)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
@@ -123,8 +141,15 @@
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=osgi.enroute.dto.api)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
     </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=osgi.enroute.rest.api)(version&gt;=1.1.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
     <requirement namespace="osgi.extender">
       <directive name="filter" value="(&amp;(osgi.extender=osgi.component)(version&gt;=1.3.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.service">
+      <directive name="filter" value="(objectClass=com.easyiot.auslora_websocket.protocol.api.AusloraDeviceService)"/>
+      <directive name="effective" value="active"/>
     </requirement>
     <requirement namespace="osgi.service">
       <directive name="filter" value="(objectClass=com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketListener)"/>
@@ -137,6 +162,10 @@
       <directive name="effective" value="active"/>
       <directive name="resolution" value="optional"/>
       <directive name="cardinality" value="multiple"/>
+    </requirement>
+    <requirement namespace="osgi.service">
+      <directive name="filter" value="(objectClass=com.easyiot.http.protocol.api.HttpProtocolFactory)"/>
+      <directive name="effective" value="active"/>
     </requirement>
     <requirement namespace="osgi.service">
       <directive name="filter" value="(objectClass=com.easyiot.websocket.protocol.api.WebsocketProtocolFactory)"/>
@@ -150,6 +179,10 @@
       <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.8))"/>
     </requirement>
     <requirement namespace="osgi.service">
+      <directive name="filter" value="(objectClass=com.easyiot.http.protocol.api.HttpProtocolFactory)"/>
+      <directive name="effective" value="active"/>
+    </requirement>
+    <requirement namespace="osgi.service">
       <directive name="filter" value="(objectClass=osgi.enroute.dto.api.DTOs)"/>
       <directive name="effective" value="active"/>
     </requirement>
@@ -167,6 +200,10 @@
       <directive name="filter" value="(objectClass=com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketProtocol)"/>
       <directive name="resolution" value="optional"/>
       <directive name="cardinality" value="multiple"/>
+      <directive name="effective" value="active"/>
+    </requirement>
+    <requirement namespace="osgi.service">
+      <directive name="filter" value="(objectClass=com.easyiot.auslora_websocket.protocol.api.AusloraDeviceService)"/>
       <directive name="effective" value="active"/>
     </requirement>
     <requirement namespace="osgi.extender">
