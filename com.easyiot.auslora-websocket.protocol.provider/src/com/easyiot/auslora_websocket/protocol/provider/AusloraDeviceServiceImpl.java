@@ -15,7 +15,7 @@ import com.easyiot.http.protocol.api.HttpProtocol;
 import com.easyiot.http.protocol.api.HttpProtocolFactory;
 import com.easyiot.websocket.protocol.provider.configuration.AusloraDeviceServiceConfig;
 
-@Designate(ocd = AusloraDeviceServiceConfig.class, factory = true)
+@Designate(ocd = AusloraDeviceServiceConfig.class)
 @Component(name = "com.easyiot.auslora-websocket.device.service", configurationPolicy = ConfigurationPolicy.REQUIRE)
 public class AusloraDeviceServiceImpl implements AusloraDeviceService {
 	AusloraDeviceServiceConfig config;
