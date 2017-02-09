@@ -18,9 +18,10 @@ import com.easyiot.auslora_websocket.protocol.api.dto.OTAADeviceDto;
 import com.easyiot.base.test.util.IntegrationTestBase;
 
 public class AusloraWebsocketProtocolTest extends IntegrationTestBase {
+	private static AusloraDeviceService unitUnderTest;
 
 	@BeforeClass
-	public static void setUpContext() {
+	public static void setUpContext() throws InterruptedException {
 		try {
 
 			Map<String, String> properties = new HashMap<>();
@@ -31,6 +32,7 @@ public class AusloraWebsocketProtocolTest extends IntegrationTestBase {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		unitUnderTest = getService(AusloraDeviceService.class);
 	}
 
 	@Test
@@ -40,28 +42,36 @@ public class AusloraWebsocketProtocolTest extends IntegrationTestBase {
 
 	@Test
 	public void testGetDevice() throws InterruptedException {
-		AusloraDeviceService unitUnderTest = getService(AusloraDeviceService.class);
+		try {
+			testRegisterOTAADevice();
+		} catch (Exception e) {// Do nothing
+		}
+
 		AusloraDeviceDto result = unitUnderTest.getDevice("BE010010", "6717E4C27ED1DB06");
 		assertTrue(result._id.equals("6717E4C27ED1DB06"));
 	}
 
 	@Test
 	public void testGetDevices() throws InterruptedException {
-		AusloraDeviceService unitUnderTest = getService(AusloraDeviceService.class);
+		try {
+			testRegisterOTAADevice();
+		} catch (Exception e) {// Do nothing
+		}
 		AusloraDeviceListDto result = unitUnderTest.getDevices("BE010010");
 		assertTrue(result.devices.size() == 2);
 	}
 
 	@Test
 	public void testDeleteDevice() throws InterruptedException {
-		AusloraDeviceService unitUnderTest = getService(AusloraDeviceService.class);
+		try {
+			registerOTAADevice();
+		} catch (Exception e) {// Do nothing
+		}
 		String result = unitUnderTest.deleteDevice("BE010010", "6717E4C27ED1DB06");
 		assertTrue(result.isEmpty());
 	}
 
-	@Test
-	public void testRegisterOTAADevice() throws InterruptedException {
-		AusloraDeviceService unitUnderTest = getService(AusloraDeviceService.class);
+	private void registerOTAADevice() {
 		OTAADeviceDto device = new OTAADeviceDto();
 		device.deveui = "6717e4c27ed1db06";
 		device.appkey = "6717e4c27ed1db066717e4c27ed1db06";
@@ -71,8 +81,20 @@ public class AusloraWebsocketProtocolTest extends IntegrationTestBase {
 	}
 
 	@Test
+	public void testRegisterOTAADevice() throws InterruptedException {
+		try {
+			testDeleteDevice();
+		} catch (Exception e) {// Do nothing
+		}
+		registerOTAADevice();
+	}
+
+	@Test
 	public void testRegisterABPDevice() throws InterruptedException {
-		AusloraDeviceService unitUnderTest = getService(AusloraDeviceService.class);
+		try {
+			testDeleteDevice();
+		} catch (Exception e) {// Do nothing
+		}
 		ABPDeviceDto device = new ABPDeviceDto();
 		device.deveui = "6717e4c27ed1db06";
 		device.devaddr = "6717e4c2";

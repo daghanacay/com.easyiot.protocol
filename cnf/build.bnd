@@ -9,3 +9,8 @@
 		name=EasyCoreMaven; \
 		location=${build}/cache/EasyCoreMaven.xml
 		
+-plugin.3.easyiot.core = \
+	aQute.bnd.deployer.repository.FixedIndexedRepo; \
+	        name		=       EasyIot-Core; \
+	        locations	=       https://raw.githubusercontent.com/daghanacay/com.easyiot.core/master/cnf/release/index.xml
+		

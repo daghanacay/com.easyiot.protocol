@@ -28,3 +28,14 @@ Bundle-License: \
 Export-Package: \
 	com.easyiot.redis.protocol.api,\
 	com.easyiot.redis.protocol.api.exception
+-runbundles: \
+	com.easyiot.base.provider;version='[1.0.0,1.0.1)',\
+	com.easyiot.redis.protocol.provider;version=snapshot,\
+	org.apache.commons.pool2;version='[2.4.2,2.4.3)',\
+	org.apache.felix.configadmin;version='[1.8.8,1.8.9)',\
+	org.apache.felix.log;version='[1.0.1,1.0.2)',\
+	org.apache.felix.scr;version='[2.0.2,2.0.3)',\
+	org.eclipse.equinox.metatype;version='[1.4.100,1.4.101)',\
+	org.osgi.service.metatype;version='[1.3.0,1.3.1)',\
+	osgi.enroute.dtos.bndlib.provider;version='[2.0.0,2.0.1)',\
+	redis.clients.jedis;version='[2.9.0,2.9.1)'

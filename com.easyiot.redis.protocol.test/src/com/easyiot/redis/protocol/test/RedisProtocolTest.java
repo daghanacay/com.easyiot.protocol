@@ -24,7 +24,7 @@ public class RedisProtocolTest extends IntegrationTestBase {
 			// See com.easyiot.redis.protocol HttpProtocolConfiguration
 			properties.put("host", "localhost");
 			properties.put("port", "6379");
-			pushConfig(properties, "test.service");
+			pushConfig(properties, "com.easyiot.redis.protocol");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
