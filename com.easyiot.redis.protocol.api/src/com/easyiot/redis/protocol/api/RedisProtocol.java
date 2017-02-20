@@ -5,6 +5,7 @@ import java.util.List;
 import org.osgi.annotation.versioning.ProviderType;
 import org.osgi.dto.DTO;
 
+import com.easyiot.base.api.Protocol;
 import com.easyiot.redis.protocol.api.exception.DataParseError;
 
 @ProviderType

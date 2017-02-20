@@ -1,0 +1,33 @@
+Bundle-Version:					1.0.0.${tstamp}
+Bundle-Description: 				\
+	Implements AWS DynamoDb protocol.\
+
+Bundle-Category: EasyIoT
+Private-Package: \
+	com.easyiot.aws_dynamodb.protocol.provider,\
+	com.easyiot.aws_dynamodb.protocol.configuration
+	
+-buildpath: \
+	osgi.enroute.base.api;version=1.0,\
+	com.easyiot.aws-dynamodb.protocol.api;version=latest,\
+	com.easyiot.base.api,\
+	com.amazonaws.aws-java-sdk-osgi
+	
+-testpath: \
+	osgi.enroute.junit.wrapper;version=4.12
+
+-includeresource: {readme.md}
+
+
+-runrequires: osgi.identity;filter:='(osgi.identity=com.easyiot.aws-dynamodb.protocol.provider)'
+	
+-runbundles: \
+	${error;Resolve first}
+	
+Bundle-License: \
+	https://opensource.org/licenses/Apache-2.0; \
+	link=http://www.apache.org/licenses/LICENSE-2.0; \
+	description="Apache Software License 2.0"
+Export-Package: \
+	com.easyiot.aws_dynamodb.protocol.api, \
+	org.apache.tapestry5.json# this is a fake to trick resolution. but actually AWS library depends on this optionally so it does not fail at runtime.	

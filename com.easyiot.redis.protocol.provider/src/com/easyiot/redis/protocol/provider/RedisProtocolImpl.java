@@ -93,4 +93,9 @@ public class RedisProtocolImpl implements RedisProtocol {
 
 	}
 
+	@Override
+	public String getId() {
+		return this.config.id();
+	}
+
 }

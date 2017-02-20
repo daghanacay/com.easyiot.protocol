@@ -32,7 +32,6 @@ test-cases: 			${classes;NAMED;*Test}
             name                =       Local ; \
             pretty              =       true ; \
             local               =       ${build}/local
-
 	        
 
 -plugin.9.Release: \

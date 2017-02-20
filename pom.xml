@@ -31,6 +31,8 @@
 		<module>com.easyiot.ttn-mqtt.protocol.provider</module>
 		<module>com.easyiot.websocket.protocol.api</module>
 		<module>com.easyiot.websocket.protocol.provider</module>
+		<module>com.easyiot.aws-dynamodb.protocol.api</module>
+		<module>com.easyiot.aws-dynamodb.protocol.provider</module>
 	</modules>
 
 	<build>
