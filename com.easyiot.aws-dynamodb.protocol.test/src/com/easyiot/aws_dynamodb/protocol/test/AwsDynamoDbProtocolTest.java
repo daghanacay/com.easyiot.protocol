@@ -3,6 +3,7 @@ package com.easyiot.aws_dynamodb.protocol.test;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -39,7 +40,8 @@ public class AwsDynamoDbProtocolTest extends IntegrationTestBase {
 	
 	@Test
 	public void testInsertData(){
-		protocol.saveData("ID", "firstData");
-		protocol.readData("firstData");
+		String randomUUID = UUID.randomUUID().toString();
+		protocol.saveData("ID", randomUUID);
+		protocol.readData(randomUUID);
 	}
 }
