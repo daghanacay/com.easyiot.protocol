@@ -63,6 +63,13 @@
 			<artifactId>aws-java-sdk-osgi</artifactId>
 			<version>1.11.93</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy -->
+		<dependency>
+			<groupId>net.bytebuddy</groupId>
+			<artifactId>byte-buddy</artifactId>
+			<version>1.6.10</version>
+		</dependency>
+
 
 	</dependencies>
 
