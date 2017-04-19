@@ -1,11 +1,9 @@
 package com.easyiot.mqtt.protocol.provider;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.service.component.annotations.Component;
 
 import com.easyiot.base.util.EasyIotOsgiUtil;
@@ -23,7 +21,7 @@ public class MqttProtocolFactoryImpl implements MqttProtocolFactory {
 		// properties required by the component that needs to be
 		properties.put("id", randomId);
 		properties.put("username", username);
-		properties.put("password", password);
+		properties.put("userPassword", password);
 		properties.put("host", host);
 		properties.put("port", String.valueOf(port));
 		// Additional property to find the created service
@@ -31,10 +29,10 @@ public class MqttProtocolFactoryImpl implements MqttProtocolFactory {
 
 		try {
 			// push the configuration and let the OSGi create the service
-			EasyIotOsgiUtil.pushFactoryConfig(properties, "com.easyiot.http.protocol");
+			EasyIotOsgiUtil.pushFactoryConfig(properties, "com.easyiot.mqtt.protocol");
 			// find the created service from the additional parameter
 			returnVal = EasyIotOsgiUtil.getService("(factoryId=factoryId-" + randomId + ")");
-		} catch (IOException | InterruptedException | InvalidSyntaxException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return returnVal;

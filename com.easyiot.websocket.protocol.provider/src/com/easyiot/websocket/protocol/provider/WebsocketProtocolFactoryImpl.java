@@ -30,7 +30,7 @@ public class WebsocketProtocolFactoryImpl implements WebsocketProtocolFactory {
 
 		try {
 			// push the configuration and let the OSGi create the service
-			EasyIotOsgiUtil.pushFactoryConfig(properties, "com.easyiot.http.protocol");
+			EasyIotOsgiUtil.pushFactoryConfig(properties, "com.easyiot.websocket.protocol");
 			// find the created service from the additional parameter
 			returnVal = EasyIotOsgiUtil.getService("(factoryId=factoryId-" + randomId + ")");
 		} catch (IOException | InterruptedException | InvalidSyntaxException e) {
