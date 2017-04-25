@@ -13,10 +13,10 @@ import org.osgi.service.metatype.annotations.Designate;
 import com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketListener;
 import com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketProtocol;
 import com.easyiot.auslora_websocket.protocol.api.dto.AusloraMetadataDTO;
+import com.easyiot.auslora_websocket.protocol.provider.configuration.AusloraWebsocketConfiguration;
 import com.easyiot.websocket.protocol.api.WebsocketProtocol;
 import com.easyiot.websocket.protocol.api.WebsocketProtocolFactory;
 import com.easyiot.websocket.protocol.api.WsListener;
-import com.easyiot.websocket.protocol.provider.configuration.AusloraWebsocketConfiguration;
 
 import osgi.enroute.dto.api.DTOs;
 

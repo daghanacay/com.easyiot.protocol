@@ -58,7 +58,7 @@ public class AusloraWebsocketProtocolTest extends IntegrationTestBase {
 		} catch (Exception e) {// Do nothing
 		}
 		AusloraDeviceListDto result = unitUnderTest.getDevices("BE010010");
-		assertTrue(result.devices.size() == 2);
+		assertTrue(result.devices.size() == 1);
 	}
 
 	@Test
@@ -71,13 +71,13 @@ public class AusloraWebsocketProtocolTest extends IntegrationTestBase {
 		assertTrue(result.isEmpty());
 	}
 
-	private void registerOTAADevice() {
+	private AusloraDeviceDto registerOTAADevice() {
 		OTAADeviceDto device = new OTAADeviceDto();
 		device.deveui = "6717e4c27ed1db06";
 		device.appkey = "6717e4c27ed1db066717e4c27ed1db06";
 
-		AusloraDeviceDto result = unitUnderTest.registerOTAADevice("BE010010", device);
-		assertTrue(result.appkey.equals("6717e4c27ed1db066717e4c27ed1db06"));
+		return unitUnderTest.registerOTAADevice("BE010010", device);
+
 	}
 
 	@Test
@@ -86,7 +86,8 @@ public class AusloraWebsocketProtocolTest extends IntegrationTestBase {
 			testDeleteDevice();
 		} catch (Exception e) {// Do nothing
 		}
-		registerOTAADevice();
+		AusloraDeviceDto result = registerOTAADevice();
+		assertTrue(result.appkey.equalsIgnoreCase("6717e4c27ed1db066717e4c27ed1db06"));
 	}
 
 	@Test

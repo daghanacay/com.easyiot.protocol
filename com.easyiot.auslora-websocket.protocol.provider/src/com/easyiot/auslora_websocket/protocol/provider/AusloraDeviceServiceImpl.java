@@ -11,9 +11,9 @@ import com.easyiot.auslora_websocket.protocol.api.dto.ABPDeviceDto;
 import com.easyiot.auslora_websocket.protocol.api.dto.AusloraDeviceDto;
 import com.easyiot.auslora_websocket.protocol.api.dto.AusloraDeviceListDto;
 import com.easyiot.auslora_websocket.protocol.api.dto.OTAADeviceDto;
+import com.easyiot.auslora_websocket.protocol.provider.configuration.AusloraDeviceServiceConfig;
 import com.easyiot.http.protocol.api.HttpProtocol;
 import com.easyiot.http.protocol.api.HttpProtocolFactory;
-import com.easyiot.websocket.protocol.provider.configuration.AusloraDeviceServiceConfig;
 
 @Designate(ocd = AusloraDeviceServiceConfig.class)
 @Component(name = "com.easyiot.auslora-websocket.device.service", configurationPolicy = ConfigurationPolicy.REQUIRE)

@@ -6,8 +6,8 @@ Bundle-Category: EasyIoT
 
 Private-Package: \
 	com.easyiot.websocket.protocol.provider,\
-	com.easyiot.websocket.protocol.provider.configuration,\
-	com.easyiot.websocket.protocol.command
+	com.easyiot.websocket.protocol.command,\
+	com.easyiot.websocket.protocol.provider.configuration
 	
 -buildpath: \
 	osgi.enroute.base.api;version=1.0,\

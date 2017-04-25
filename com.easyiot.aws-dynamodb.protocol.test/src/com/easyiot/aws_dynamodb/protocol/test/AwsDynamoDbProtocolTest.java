@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.easyiot.aws_dynamodb.protocol.api.AwsDynamodbProtocol;
@@ -39,6 +40,8 @@ public class AwsDynamoDbProtocolTest extends IntegrationTestBase {
 	}
 	
 	@Test
+	@Ignore
+	// Because we have deleted the security token from AWS
 	public void testInsertData(){
 		String randomUUID = UUID.randomUUID().toString();
 		protocol.saveData("ID", randomUUID);

@@ -1,4 +1,4 @@
-package com.easyiot.websocket.protocol.provider.configuration;
+package com.easyiot.auslora_websocket.protocol.provider.configuration;
 
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
