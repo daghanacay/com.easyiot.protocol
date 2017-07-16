@@ -11,8 +11,8 @@ Private-Package: \
 -buildpath: \
 	osgi.enroute.base.api;version=1.0,\
 	com.easyiot.aws-dynamodb.protocol.api;version=latest,\
-	com.easyiot.base.api,\
-	com.amazonaws.aws-java-sdk-osgi
+	com.amazonaws.aws-java-sdk-osgi,\
+	com.easyiot.base.api
 	
 -testpath: \
 	osgi.enroute.junit.wrapper;version=4.12

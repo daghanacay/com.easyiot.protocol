@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.easyiot.auslora_websocket.protocol.api.AusloraDeviceService;
@@ -41,6 +42,7 @@ public class AusloraWebsocketProtocolTest extends IntegrationTestBase {
 	}
 
 	@Test
+	@Ignore
 	public void testGetDevice() throws InterruptedException {
 		try {
 			testRegisterOTAADevice();
@@ -52,6 +54,7 @@ public class AusloraWebsocketProtocolTest extends IntegrationTestBase {
 	}
 
 	@Test
+	@Ignore
 	public void testGetDevices() throws InterruptedException {
 		try {
 			testRegisterOTAADevice();
@@ -62,6 +65,7 @@ public class AusloraWebsocketProtocolTest extends IntegrationTestBase {
 	}
 
 	@Test
+	@Ignore
 	public void testDeleteDevice() throws InterruptedException {
 		try {
 			registerOTAADevice();
@@ -81,6 +85,7 @@ public class AusloraWebsocketProtocolTest extends IntegrationTestBase {
 	}
 
 	@Test
+	@Ignore
 	public void testRegisterOTAADevice() throws InterruptedException {
 		try {
 			testDeleteDevice();
@@ -91,6 +96,7 @@ public class AusloraWebsocketProtocolTest extends IntegrationTestBase {
 	}
 
 	@Test
+	@Ignore
 	public void testRegisterABPDevice() throws InterruptedException {
 		try {
 			testDeleteDevice();
